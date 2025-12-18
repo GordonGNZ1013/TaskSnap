@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>專案小幫手 - 任務管理</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+    QMainWindow {
+      background-color: #f5f5f5;
+    }
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="mainLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    
+    <!-- ========== 左側：過濾選單 ========== -->
+    <item>
+     <widget class="QWidget" name="leftPanel">
+      <property name="minimumSize">
+       <size>
+        <width>260</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+        QWidget#leftPanel {
+          background-color: #2c3e50;
+        }
+        QLabel {
+          color: white;
+          font-size: 18px;
+          padding: 10px;
+        }
+        QPushButton {
+          background-color: transparent;
+          color: white;
+          border: none;
+          text-align: left;
+          padding: 18px 25px;
+          font-size: 18px;
+        }
+        QPushButton:hover {
+          background-color: #34495e;
+        }
+        QPushButton:checked {
+          background-color: #3498db;
+        }
+       </string>
+      </property>
+      <layout class="QVBoxLayout" name="leftLayout">
+       <property name="spacing">
+        <number>8</number>
+       </property>
+       <property name="leftMargin">
+        <number>8</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>8</number>
+       </property>
+       <property name="bottomMargin">
+        <number>8</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="logoLabel">
+         <property name="text">
+          <string>📋 專案小幫手</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 24px; font-weight: bold; padding: 25px 10px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnAllTasks">
+         <property name="text">
+          <string>📁 所有任務</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnToday">
+         <property name="text">
+          <string>📅 今天</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnOverdue">
+         <property name="text">
+          <string>⚠️ 已過期</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnCompleted">
+         <property name="text">
+          <string>✅ 已完成</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="leftSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <!-- 番茄鐘區域 -->
+       <item>
+        <widget class="QLabel" name="pomodoroTitle">
+         <property name="text">
+          <string>🍅 番茄鐘</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 20px; font-weight: bold; padding: 18px 25px 15px 25px; border-top: 1px solid #34495e;</string>
+         </property>
+        </widget>
+       </item>
+       <!-- 模式切換按鈕 -->
+       <item>
+        <widget class="QWidget" name="modeButtons">
+         <layout class="QHBoxLayout" name="modeButtonsLayout">
+          <property name="leftMargin">
+           <number>15</number>
+          </property>
+          <property name="rightMargin">
+           <number>15</number>
+          </property>
+          <property name="spacing">
+           <number>12</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="btnPomodoroMode">
+            <property name="text">
+             <string>🍅 番茄鐘</string>
+            </property>
+            <property name="toolTip">
+             <string>番茄鐘模式</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <property name="autoExclusive">
+             <bool>true</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { background-color: #34495e; color: white; padding: 12px 15px; border-radius: 4px; font-size: 16px; font-weight: bold; } QPushButton:checked { background-color: #e74c3c; } QPushButton:hover { background-color: #4a6278; } QPushButton:checked:hover { background-color: #ec7063; }</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnStopwatchMode">
+            <property name="text">
+             <string>⏱ 碼錶</string>
+            </property>
+            <property name="toolTip">
+             <string>碼錶模式</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="autoExclusive">
+             <bool>true</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { background-color: #34495e; color: white; padding: 12px 15px; border-radius: 4px; font-size: 16px; font-weight: bold; } QPushButton:checked { background-color: #3498db; } QPushButton:hover { background-color: #4a6278; } QPushButton:checked:hover { background-color: #5dade2; }</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="pomodoroPhaseLabel">
+         <property name="text">
+          <string>工作中</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="pomodoroTimeLabel">
+         <property name="text">
+          <string>25:00</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 56px; font-weight: bold; padding: 15px;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="pomodoroButtons">
+         <layout class="QGridLayout" name="pomodoroButtonsLayout">
+          <property name="leftMargin">
+           <number>15</number>
+          </property>
+          <property name="rightMargin">
+           <number>15</number>
+          </property>
+          <property name="spacing">
+           <number>10</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="btnPomodoroStart">
+            <property name="text">
+             <string>▶ 開始</string>
+            </property>
+            <property name="toolTip">
+             <string>開始計時</string>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { background-color: #27ae60; color: white; padding: 12px 8px; border-radius: 3px; font-size: 14px; font-weight: bold; } QPushButton:hover { background-color: #2ecc71; } QPushButton:pressed { background-color: #1e8449; }</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="btnPomodoroPause">
+            <property name="text">
+             <string>⏸ 暫停</string>
+            </property>
+            <property name="toolTip">
+             <string>暫停計時</string>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { background-color: #f39c12; color: white; padding: 12px 8px; border-radius: 3px; font-size: 14px; font-weight: bold; } QPushButton:hover { background-color: #f1c40f; } QPushButton:pressed { background-color: #d68910; }</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="btnPomodoroReset">
+            <property name="text">
+             <string>↺ 重設</string>
+            </property>
+            <property name="toolTip">
+             <string>重設計時器</string>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { background-color: #e74c3c; color: white; padding: 12px 8px; border-radius: 3px; font-size: 14px; font-weight: bold; } QPushButton:hover { background-color: #ec7063; } QPushButton:pressed { background-color: #c0392b; }</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="btnPomodoroSettings">
+            <property name="text">
+             <string>⚙ 設定</string>
+            </property>
+            <property name="toolTip">
+             <string>計時器設定</string>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton { background-color: #9b59b6; color: white; padding: 12px 8px; border-radius: 3px; font-size: 14px; font-weight: bold; } QPushButton:hover { background-color: #a569bd; } QPushButton:pressed { background-color: #7d3c98; }</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <!-- 統計資訊 -->
+       <item>
+        <widget class="QLabel" name="statsTitle">
+         <property name="text">
+          <string>📊 今日統計</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 18px; font-weight: bold; padding: 18px 25px 12px 25px; border-top: 1px solid #34495e;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblTodayPomodoros">
+         <property name="text">
+          <string>🍅 完成: 0 個</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 16px; padding: 8px 25px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblTodayWorkTime">
+         <property name="text">
+          <string>⏱️ 工時: 0:00:00</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 16px; padding: 8px 25px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblTaskWorkTime">
+         <property name="text">
+          <string>📋 任務: --</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 16px; padding: 8px 25px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="bottomSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    
+    <!-- ========== 中間：任務列表 ========== -->
+    <item>
+     <widget class="QWidget" name="centerPanel">
+      <property name="styleSheet">
+       <string notr="true">
+        QWidget#centerPanel {
+          background-color: #ecf0f1;
+        }
+       </string>
+      </property>
+      <layout class="QVBoxLayout" name="centerLayout">
+       <property name="leftMargin">
+        <number>15</number>
+       </property>
+       <property name="topMargin">
+        <number>15</number>
+       </property>
+       <property name="rightMargin">
+        <number>15</number>
+       </property>
+       <!-- 標題與新增按鈕 -->
+       <item>
+        <widget class="QWidget" name="headerWidget">
+         <layout class="QHBoxLayout" name="headerLayout">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="taskListTitle">
+            <property name="text">
+             <string>所有任務</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font-size: 20px; font-weight: bold; color: #2c3e50;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="headerSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnAddTask">
+            <property name="text">
+             <string>+ 新增任務</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QPushButton {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                font-size: 14px;
+                border-radius: 5px;
+              }
+              QPushButton:hover {
+                background-color: #2980b9;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <!-- 任務列表 -->
+       <item>
+        <widget class="QListWidget" name="taskListWidget">
+         <property name="styleSheet">
+          <string notr="true">
+           QListWidget {
+             background-color: white;
+             border: 1px solid #bdc3c7;
+             border-radius: 5px;
+             padding: 5px;
+           }
+           QListWidget::item {
+             padding: 15px;
+             border-bottom: 1px solid #ecf0f1;
+           }
+           QListWidget::item:selected {
+             background-color: #e8f4fc;
+             color: #2c3e50;
+           }
+           QListWidget::item:hover {
+             background-color: #f8f9fa;
+           }
+          </string>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    
+    <!-- ========== 右側：任務詳情 ========== -->
+    <item>
+     <widget class="QWidget" name="rightPanel">
+      <property name="minimumSize">
+       <size>
+        <width>380</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>450</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+        QWidget#rightPanel {
+          background-color: white;
+          border-left: 1px solid #bdc3c7;
+        }
+        QLabel {
+          color: #2c3e50;
+        }
+       </string>
+      </property>
+      <layout class="QVBoxLayout" name="rightLayout">
+       <property name="leftMargin">
+        <number>15</number>
+       </property>
+       <property name="topMargin">
+        <number>15</number>
+       </property>
+       <property name="rightMargin">
+        <number>15</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="detailTitle">
+         <property name="text">
+          <string>任務詳情</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 18px; font-weight: bold; padding-bottom: 10px; border-bottom: 1px solid #ecf0f1;</string>
+         </property>
+        </widget>
+       </item>
+       <!-- 任務標題 -->
+       <item>
+        <widget class="QLabel" name="lblDetailTaskTitle">
+         <property name="text">
+          <string>選擇一個任務查看詳情</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 16px; font-weight: bold; padding-top: 15px;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <!-- 截止日期 -->
+       <item>
+        <widget class="QLabel" name="lblDetailDue">
+         <property name="text">
+          <string></string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: #7f8c8d; padding-top: 5px;</string>
+         </property>
+        </widget>
+       </item>
+       <!-- 優先級 -->
+       <item>
+        <widget class="QLabel" name="lblDetailPriority">
+         <property name="text">
+          <string></string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">padding-top: 5px;</string>
+         </property>
+        </widget>
+       </item>
+       <!-- 描述 -->
+       <item>
+        <widget class="QLabel" name="lblDescTitle">
+         <property name="text">
+          <string>描述</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-weight: bold; padding-top: 15px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="txtDetailDescription">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+           QTextEdit {
+             background-color: #f8f9fa;
+             border: 1px solid #ecf0f1;
+             border-radius: 5px;
+             padding: 10px;
+           }
+          </string>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>120</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <!-- 附件區域 -->
+       <item>
+        <widget class="QLabel" name="lblAttachTitle">
+         <property name="text">
+          <string>📎 附件</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-weight: bold; padding-top: 15px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListWidget" name="attachmentListWidget">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>120</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>250</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+           QListWidget {
+             background-color: white;
+             border: 1px solid #bdc3c7;
+             border-radius: 5px;
+             padding: 8px;
+           }
+           QListWidget::item {
+             padding: 15px;
+             border-bottom: 1px solid #ecf0f1;
+             color: #2c3e50;
+             background-color: white;
+           }
+           QListWidget::item:selected {
+             background-color: #e8f4fc;
+             color: #2c3e50;
+           }
+           QListWidget::item:hover {
+             background-color: #f8f9fa;
+           }
+          </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnAddAttachment">
+         <property name="text">
+          <string>+ 新增附件</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+           QPushButton {
+             background-color: #95a5a6;
+             color: white;
+             border: none;
+             padding: 8px;
+             border-radius: 3px;
+           }
+           QPushButton:hover {
+             background-color: #7f8c8d;
+           }
+          </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="rightSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </spacer>
+       </item>
+       <!-- 操作按鈕 -->
+       <item>
+        <widget class="QWidget" name="actionButtons">
+         <layout class="QHBoxLayout" name="actionButtonsLayout">
+          <item>
+           <widget class="QPushButton" name="btnEditTask">
+            <property name="text">
+             <string>✏️ 編輯</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QPushButton {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+              }
+              QPushButton:hover {
+                background-color: #2980b9;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnCompleteTask">
+            <property name="text">
+             <string>✅ 完成</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QPushButton {
+                background-color: #27ae60;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+              }
+              QPushButton:hover {
+                background-color: #219a52;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnDeleteTask">
+            <property name="text">
+             <string>🗑️ 刪除</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QPushButton {
+                background-color: #e74c3c;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+              }
+              QPushButton:hover {
+                background-color: #c0392b;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>檔案(&amp;F)</string>
+    </property>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>編輯(&amp;E)</string>
+    </property>
+    <addaction name="actionNewTask"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>說明(&amp;H)</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="separator"/>
+    <addaction name="actionTestNotification"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionExit">
+   <property name="text">
+    <string>離開(&amp;X)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionNewTask">
+   <property name="text">
+    <string>新增任務(&amp;N)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>關於(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionTestNotification">
+   <property name="text">
+    <string>測試通知(&amp;T)</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

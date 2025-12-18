@@ -1,0 +1,14 @@
+debug/main.o
+debug/mainwindow.o
+debug/database.o
+debug/taskdialog.o
+debug/pomodorotimer.o
+debug/pomodorosettingsdialog.o
+debug/notificationmanager.o
+debug/qrc_resources.o
+debug/moc_mainwindow.o
+debug/moc_database.o
+debug/moc_taskdialog.o
+debug/moc_pomodorotimer.o
+debug/moc_pomodorosettingsdialog.o
+debug/moc_notificationmanager.o

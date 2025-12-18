@@ -1,0 +1,8 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/">
+        <!-- 之後加入圖示和音效檔案 -->
+        <!-- <file>resources/icon.png</file> -->
+        <!-- <file>resources/alarm.wav</file> -->
+    </qresource>
+</RCC>
