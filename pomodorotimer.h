@@ -6,6 +6,9 @@
 #include <QDateTime>
 #include <QMap>
 
+class WorkStats;  // 前向聲明
+class PomodoroConfig;  // 前向聲明
+
 class PomodoroTimer : public QObject
 {
     Q_OBJECT
@@ -27,6 +30,15 @@ public:
     Q_ENUM(Phase)
 
     explicit PomodoroTimer(QObject *parent = nullptr);
+    
+    // 設置工作統計管理器
+    void setWorkStats(WorkStats *workStats) { m_workStats = workStats; }
+    
+    // 設置番茄鐘設置管理器
+    void setPomodoroConfig(PomodoroConfig *config) { m_pomodoroConfig = config; }
+    
+    // 從配置文件加載設置
+    void loadSettingsFromConfig();
 
     // 模式切換
     void setMode(Mode mode);
@@ -110,6 +122,12 @@ private:
     // 任務計時
     int m_currentTaskId = -1;
     QMap<int, int> m_taskElapsedSeconds;  // 任務ID -> 累計秒數
+    
+    // 工作統計
+    WorkStats *m_workStats = nullptr;
+    
+    // 番茄鐘設置
+    PomodoroConfig *m_pomodoroConfig = nullptr;
     
     void switchToNextPhase();
     void recordWorkSession();

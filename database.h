@@ -32,6 +32,9 @@ public:
     
     // 取得附件儲存目錄
     static QString attachmentsDir();
+    
+    // 取得數據根目錄
+    static QString dataDir();
 
 private:
     QSqlDatabase m_db;

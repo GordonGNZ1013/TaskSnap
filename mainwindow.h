@@ -7,6 +7,9 @@
 #include "database.h"
 #include "pomodorotimer.h"
 #include "notificationmanager.h"
+#include "snapshotmanager.h"
+#include "workstats.h"
+#include "pomodoroconfig.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -69,6 +72,9 @@ private:
     Database *m_database;
     PomodoroTimer *m_pomodoroTimer;
     NotificationManager *m_notificationManager;
+    SnapshotManager *m_snapshotManager;
+    WorkStats *m_workStats;
+    PomodoroConfig *m_pomodoroConfig;
     QList<Task> m_allTasks;    // 所有任務（從資料庫）
     QList<Task> m_tasks;       // 目前顯示的任務（篩選後）
     FilterType m_currentFilter = FilterAll;  // 目前篩選類型

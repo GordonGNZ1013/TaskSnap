@@ -1,4 +1,6 @@
 #include "pomodorotimer.h"
+#include "workstats.h"
+#include "pomodoroconfig.h"
 #include <QDebug>
 
 PomodoroTimer::PomodoroTimer(QObject *parent)
@@ -7,6 +9,34 @@ PomodoroTimer::PomodoroTimer(QObject *parent)
 {
     connect(m_timer, &QTimer::timeout, this, &PomodoroTimer::onTick);
     m_timer->setInterval(1000);  // 每秒觸發
+}
+
+void PomodoroTimer::loadSettingsFromConfig()
+{
+    if (!m_pomodoroConfig) {
+        qWarning() << "PomodoroConfig 未設置";
+        return;
+    }
+    
+    m_workDuration = m_pomodoroConfig->getWorkDuration() * 60;
+    m_shortBreakDuration = m_pomodoroConfig->getShortBreakDuration() * 60;
+    m_longBreakDuration = m_pomodoroConfig->getLongBreakDuration() * 60;
+    m_cyclesBeforeLongBreak = m_pomodoroConfig->getCyclesBeforeLongBreak();
+    
+    // 重置計時器
+    m_currentPhase = Work;
+    m_remainingSeconds = m_workDuration;
+    m_completedCycles = 0;
+    m_isRunning = false;
+    m_timer->stop();
+    
+    emit tick(m_remainingSeconds);
+    emit phaseChanged(m_currentPhase);
+    
+    qDebug() << "✓ 番茄鐘設置已加載到計時器"
+             << "工作:" << m_workDuration / 60 << "分"
+             << "短休:" << m_shortBreakDuration / 60 << "分"
+             << "長休:" << m_longBreakDuration / 60 << "分";
 }
 
 void PomodoroTimer::setMode(Mode mode)
@@ -262,6 +292,11 @@ void PomodoroTimer::switchToNextPhase()
         m_todayPomodoroCount++;
         emit pomodoroCompleted();
         
+        // 通知工作統計系統
+        if (m_workStats) {
+            m_workStats->completePomodoroSession();
+        }
+        
         qDebug() << "完成一個番茄鐘！今日完成:" << m_todayPomodoroCount;
         
         // 決定是短休息還是長休息
@@ -298,6 +333,12 @@ void PomodoroTimer::recordWorkSession()
     
     if (worked > 0) {
         emit workSessionRecorded(worked);
+        
+        // 通知工作統計系統
+        if (m_workStats) {
+            m_workStats->addWorkSeconds(worked);
+        }
+        
         qDebug() << "記錄工作時段:" << formatDuration(worked);
     }
 }

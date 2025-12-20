@@ -18,7 +18,10 @@ SOURCES += \
     taskdialog.cpp \
     pomodorotimer.cpp \
     pomodorosettingsdialog.cpp \
-    notificationmanager.cpp
+    notificationmanager.cpp \
+    snapshotmanager.cpp \
+    workstats.cpp \
+    pomodoroconfig.cpp
 
 # 標頭檔
 HEADERS += \
@@ -28,7 +31,10 @@ HEADERS += \
     taskdialog.h \
     pomodorotimer.h \
     pomodorosettingsdialog.h \
-    notificationmanager.h
+    notificationmanager.h \
+    snapshotmanager.h \
+    workstats.h \
+    pomodoroconfig.h
 
 # UI 表單檔
 FORMS += \

@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QFile>
 #include <QDebug>
+#include <QCoreApplication>
 
 Database::Database(QObject *parent)
     : QObject(parent)
@@ -18,14 +19,20 @@ Database::~Database()
     }
 }
 
+QString Database::dataDir()
+{
+    // 使用應用程序運行目錄下的 data 文件夾
+    // 這樣所有數據都會保存在一個地方
+    QString dir = QCoreApplication::applicationDirPath() + "/data";
+    QDir().mkpath(dir);
+    return dir;
+}
+
 bool Database::initialize()
 {
-    // 使用 AppData\Roaming 目錄以保持與原有數據的兼容性
-    QString dataPath = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/ProjectHelper";
-    QDir dir(dataPath);
-    if (!dir.exists()) {
-        dir.mkpath(".");
-    }
+    // 使用統一的數據目錄
+    QString dataPath = dataDir();
+    qDebug() << "數據目錄:" << dataPath;
 
     // 設定資料庫路徑
     QString dbPath = dataPath + "/tasks.db";
@@ -310,7 +317,7 @@ QList<Task> Database::getAllTasks()
 
 QString Database::attachmentsDir()
 {
-    QString dir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/ProjectHelper/attachments";
+    QString dir = dataDir() + "/attachments";
     QDir().mkpath(dir);
     return dir;
 }

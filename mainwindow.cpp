@@ -21,6 +21,9 @@ MainWindow::MainWindow(QWidget *parent)
     , m_database(new Database(this))
     , m_pomodoroTimer(new PomodoroTimer(this))
     , m_notificationManager(new NotificationManager(this))
+    , m_snapshotManager(new SnapshotManager(this))
+    , m_workStats(new WorkStats())
+    , m_pomodoroConfig(new PomodoroConfig())
     , m_trayIcon(nullptr)
     , m_trayMenu(nullptr)
 {
@@ -100,6 +103,12 @@ MainWindow::MainWindow(QWidget *parent)
     if (!m_database->initialize()) {
         QMessageBox::critical(this, "錯誤", "無法初始化資料庫！");
     }
+    
+    // 顯示數據存儲位置
+    QString dataLocation = m_database->dataDir();
+    qDebug() << "\n========== 應用程序初始化 ==========";
+    qDebug() << "數據存儲位置:" << dataLocation;
+    ui->statusbar->showMessage("數據位置: " + dataLocation, 10000);
 
     // 設定系統匣圖示
     setupTrayIcon();
@@ -138,6 +147,11 @@ void MainWindow::setupConnections()
     connect(ui->btnPomodoroPause, &QPushButton::clicked, this, &MainWindow::onPomodoroPause);
     connect(ui->btnPomodoroReset, &QPushButton::clicked, this, &MainWindow::onPomodoroReset);
 
+    // 設置工作統計管理器和番茄鐘配置
+    m_pomodoroTimer->setWorkStats(m_workStats);
+    m_pomodoroTimer->setPomodoroConfig(m_pomodoroConfig);
+    m_pomodoroTimer->loadSettingsFromConfig();
+    
     // 番茄鐘計時器信號
     connect(m_pomodoroTimer, &PomodoroTimer::tick, this, &MainWindow::onPomodoroTick);
     connect(m_pomodoroTimer, &PomodoroTimer::phaseChanged, this, &MainWindow::onPhaseChanged);
@@ -341,13 +355,15 @@ void MainWindow::displayTasks()
         // 設定項目高度（增加高度使內容更寬敞易讀）
         item->setSizeHint(QSize(0, 75));
 
-        // 設定顏色
+        // 設定顏色 - 確保顏色可見
         if (task.isCompleted) {
-            item->setForeground(QColor("#95a5a6"));  // 灰色
+            item->setForeground(QColor(149, 165, 166));  // 灰色 #95a5a6
         } else if (task.isOverdue()) {
-            item->setForeground(QColor("#e74c3c"));  // 紅色
+            item->setForeground(QColor(231, 76, 60));    // 紅色 #e74c3c
         } else if (task.priority == 2) {
-            item->setForeground(QColor("#c0392b"));  // 深紅色（高優先級）
+            item->setForeground(QColor(192, 57, 43));    // 深紅色 #c0392b
+        } else {
+            item->setForeground(QColor(0, 0, 0));        // 黑色 - 確保可見
         }
 
         ui->taskListWidget->addItem(item);
@@ -491,10 +507,64 @@ void MainWindow::onTaskCompleted()
 
     Task task = m_tasks[currentRow];
     bool newStatus = !task.isCompleted;
+    QString statusMessage = "";
+
+    qDebug() << "\n===== 開始處理任務完成 =====";
+    qDebug() << "任務 ID:" << task.id;
+    qDebug() << "任務標題:" << task.title;
+    qDebug() << "新狀態:" << newStatus;
 
     if (m_database->markTaskCompleted(task.id, newStatus)) {
+        qDebug() << "✓ 任務狀態已更新";
+        
+        // 如果是標記為完成，則自動建立快照
+        if (newStatus) {
+            qDebug() << "\n開始建立快照流程...";
+            
+            // 重新載入任務以獲取最新的附件信息
+            Task completedTask = m_database->getTask(task.id);
+            qDebug() << "✓ 已載入任務信息";
+            qDebug() << "  - 標題：" << completedTask.title;
+            qDebug() << "  - 初始附件數量：" << completedTask.attachments.size();
+            
+            completedTask.attachments = m_database->getAttachments(task.id);
+            qDebug() << "✓ 已載入附件";
+            qDebug() << "  - 最終附件數量：" << completedTask.attachments.size();
+            for (int i = 0; i < completedTask.attachments.size(); ++i) {
+                qDebug() << "    [" << i+1 << "]" << completedTask.attachments[i].originalName;
+            }
+            
+            // 建立快照
+            qDebug() << "\n呼叫 createSnapshot()...";
+            QString snapshotPath = m_snapshotManager->createSnapshot(completedTask);
+            qDebug() << "快照建立完成，返回路徑:" << snapshotPath;
+            
+            if (!snapshotPath.isEmpty()) {
+                statusMessage = "✅ 任務已完成！\n快照已保存";
+                qDebug() << "✓✓✓ 快照建立成功！";
+                
+                // 顯示完成對話框
+                QMessageBox::information(this, "成功", 
+                    QString("任務已完成！\n\n快照路徑：\n%1").arg(snapshotPath));
+            } else {
+                statusMessage = "✅ 任務已完成\n（快照建立失敗）";
+                qWarning() << "✗ 快照建立失敗！";
+                
+                // 顯示失敗對話框
+                QMessageBox::warning(this, "提示", 
+                    "任務已完成，但快照建立失敗。\n請檢查：\n1. 磁盤空間\n2. data 文件夾權限\n3. PowerShell 是否可用");
+            }
+        } else {
+            statusMessage = "✓ 任務標記為未完成";
+        }
+        
+        qDebug() << "重新載入任務列表...";
+        // 重新載入任務列表
         loadTasks();
-        ui->statusbar->showMessage(newStatus ? "任務已完成 ✅" : "任務標記為未完成", 3000);
+        
+        // 在最後設置狀態欄消息，確保不被覆蓋
+        ui->statusbar->showMessage(statusMessage, 5000);
+        qDebug() << "===== 任務完成處理結束 =====\n";
     } else {
         QMessageBox::warning(this, "錯誤", "無法更新任務狀態！");
     }
@@ -633,13 +703,19 @@ void MainWindow::onPomodoroCompleted()
         NotificationManager::PomodoroComplete,
         "🍅 番茄鐘完成",
         QString("太棒了！完成一個番茄鐘！今日已完成 %1 個")
-            .arg(m_pomodoroTimer->todayPomodoroCount()));
+            .arg(m_workStats->getTodayPomodoroCount()));
     
     // 顯示對話框
     QMessageBox::information(this, "🍅 番茄鐘完成", 
-        QString("太棒了！完成一個番茄鐘！\n\n今日已完成: %1 個\n今日工時: %2")
-        .arg(m_pomodoroTimer->todayPomodoroCount())
-        .arg(PomodoroTimer::formatDuration(m_pomodoroTimer->todayWorkSeconds())));
+        QString("太棒了！完成一個番茄鐘！\n\n📊 工作統計\n"
+                "├─ 今日完成: %1 個番茄\n"
+                "├─ 今日工時: %2\n"
+                "├─ 累計番茄: %3 個\n"
+                "└─ 累計工時: %4")
+        .arg(m_workStats->getTodayPomodoroCount())
+        .arg(PomodoroTimer::formatDuration(m_workStats->getTodayWorkSeconds()))
+        .arg(m_workStats->getTotalPomodoroCount())
+        .arg(PomodoroTimer::formatDuration(m_workStats->getTotalWorkSeconds())));
 }
 
 void MainWindow::onModeChanged(PomodoroTimer::Mode mode)
@@ -691,7 +767,13 @@ void MainWindow::onPomodoroSettings()
     dialog.setCyclesBeforeLongBreak(m_pomodoroTimer->getCyclesBeforeLongBreak());
     
     if (dialog.exec() == QDialog::Accepted) {
-        // 套用設定
+        // 保存到配置文件
+        m_pomodoroConfig->setWorkDuration(dialog.workDuration());
+        m_pomodoroConfig->setShortBreakDuration(dialog.shortBreakDuration());
+        m_pomodoroConfig->setLongBreakDuration(dialog.longBreakDuration());
+        m_pomodoroConfig->setCyclesBeforeLongBreak(dialog.cyclesBeforeLongBreak());
+        
+        // 套用設定到計時器
         m_pomodoroTimer->setWorkDuration(dialog.workDuration());
         m_pomodoroTimer->setShortBreakDuration(dialog.shortBreakDuration());
         m_pomodoroTimer->setLongBreakDuration(dialog.longBreakDuration());
@@ -700,7 +782,9 @@ void MainWindow::onPomodoroSettings()
         // 重設計時器以套用新設定（不發送信號避免彈出通知）
         m_pomodoroTimer->resetQuiet();
         
-        ui->statusbar->showMessage(QString("番茄鐘設定已更新：工作 %1 分鐘，短休息 %2 分鐘，長休息 %3 分鐘")
+        qDebug() << "✓ 番茄鐘設定已保存並應用";
+        
+        ui->statusbar->showMessage(QString("✓ 番茄鐘設定已保存：工作 %1 分鐘，短休息 %2 分鐘，長休息 %3 分鐘")
             .arg(dialog.workDuration())
             .arg(dialog.shortBreakDuration())
             .arg(dialog.longBreakDuration()), 5000);
