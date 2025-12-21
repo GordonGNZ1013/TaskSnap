@@ -1,14 +1,31 @@
-#include "pomodorotimer.h"
-#include "workstats.h"
-#include "pomodoroconfig.h"
-#include <QDebug>
+// ========================================
+// 番茄鐘計時器類實現 (pomodorotimer.cpp)
+// 功能: 實現番茄鐘和碼錶的計時邏輯
+// 特性: 支持兩種模式切換、工作統計、任務計時
+// ========================================
 
+#include "pomodorotimer.h"        // 番茄鐘計時器頭文件
+#include "workstats.h"            // 工作統計模塊
+#include "pomodoroconfig.h"       // 番茄鐘配置模塊
+#include <QDebug>                 // 調試輸出
+
+/**
+ * 構造函數 - PomodoroTimer()
+ * 參數: parent - 父對象指針
+ * 功能: 初始化番茄鐘計時器
+ *  1. 創建內部計時器（QTimer）
+ *  2. 連接計時器的timeout信號到onTick槽函數
+ *  3. 設置計時器間隔為1000毫秒（1秒）
+ */
 PomodoroTimer::PomodoroTimer(QObject *parent)
     : QObject(parent)
-    , m_timer(new QTimer(this))
+    , m_timer(new QTimer(this))  // 創建内部計時器，以this為父對象（自動銷毀）
 {
+    // 連接計時器的timeout信號到本對象的onTick槽函數
+    // 每當計時器發出timeout信號時，都會調用onTick()
     connect(m_timer, &QTimer::timeout, this, &PomodoroTimer::onTick);
-    m_timer->setInterval(1000);  // 每秒觸發
+    
+    m_timer->setInterval(1000);  // 設置計時器間隔為1秒（1000毫秒）
 }
 
 void PomodoroTimer::loadSettingsFromConfig()

@@ -1,28 +1,43 @@
-#include "notificationmanager.h"
-#include <QApplication>
-#include <QDebug>
-#include <QUrl>
-#include <QDir>
-#include <QFile>
-#include <QStandardPaths>
-#include <string>
+// ========================================
+// 通知管理器類實現 (notificationmanager.cpp)
+// 功能: 管理系統通知、提醒、聲音播放
+// 特性: 跨平台支持、系統托盤集成、音頻播放
+// ========================================
+
+#include "notificationmanager.h"  // 通知管理器頭文件
+#include <QApplication>           // Qt應用程序
+#include <QDebug>                 // 調試輸出
+#include <QUrl>                   // URL處理
+#include <QDir>                   // 目錄操作
+#include <QFile>                  // 文件操作
+#include <QStandardPaths>         // 標準路徑
+#include <string>                 // 標準字符串
 
 #ifdef Q_OS_WIN
-#include <Windows.h>
+#include <Windows.h>              // Windows API（用於Windows通知）
 #endif
 
+/**
+ * 構造函數 - NotificationManager()
+ * 參數: parent - 父對象指針
+ * 功能: 初始化通知管理器
+ *  1. 創建提醒計時器（每分鐘檢查一次提醒）
+ *  2. 初始化媒體播放器和音頻輸出
+ *  3. 設置音量為80%
+ */
 NotificationManager::NotificationManager(QObject *parent)
     : QObject(parent)
-    , m_reminderTimer(new QTimer(this))
-    , m_mediaPlayer(new QMediaPlayer(this))
-    , m_audioOutput(new QAudioOutput(this))
+    , m_reminderTimer(new QTimer(this))           // 提醒檢查計時器
+    , m_mediaPlayer(new QMediaPlayer(this))       // 音頻播放器
+    , m_audioOutput(new QAudioOutput(this))       // 音頻輸出設備
 {
-    // 設定音效播放器
+    // 設定音效播放器 - 將音頻輸出連接到媒體播放器
     m_mediaPlayer->setAudioOutput(m_audioOutput);
-    m_audioOutput->setVolume(0.8);  // 80% 音量
+    m_audioOutput->setVolume(0.8);  // 設置音量為80%
 
-    // 設定提醒檢查計時器（每分鐘檢查一次）
-    m_reminderTimer->setInterval(60 * 1000);  // 60 秒
+    // 設定提醒檢查計時器（每分鐘檢查一次是否有需要提醒的任務）
+    m_reminderTimer->setInterval(60 * 1000);  // 60秒（1分鐘）
+    // 連接計時器的timeout信號到checkReminders槽函數
     connect(m_reminderTimer, &QTimer::timeout, this, &NotificationManager::checkReminders);
 }
 

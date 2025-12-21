@@ -1,22 +1,39 @@
-#include "snapshotmanager.h"
-#include "database.h"
-#include <QStandardPaths>
-#include <QDir>
-#include <QFile>
-#include <QDateTime>
-#include <QDebug>
-#include <QTextStream>
-#include <QProcess>
-#include <QCoreApplication>
-#include <QStringConverter>
+// ========================================
+// 快照管理器類實現 (snapshotmanager.cpp)
+// 功能: 創建任務快照（ZIP格式），包含任務信息和附件
+// 特性: 支持增量備份、自動壓縮、任務導出
+// ========================================
 
+#include "snapshotmanager.h"      // 快照管理器頭文件
+#include "database.h"             // 數據庫模塊
+#include <QStandardPaths>         // 標準路徑
+#include <QDir>                   // 目錄操作
+#include <QFile>                  // 文件操作
+#include <QDateTime>              // 日期時間
+#include <QDebug>                 // 調試輸出
+#include <QTextStream>            // 文本流
+#include <QProcess>               // 子進程
+#include <QCoreApplication>       // 應用程序
+#include <QStringConverter>       // 字符串轉換
+
+/**
+ * 構造函數 - SnapshotManager()
+ * 參數: parent - 父對象指針
+ * 功能: 初始化快照管理器
+ */
 SnapshotManager::SnapshotManager(QObject *parent)
-    : QObject(parent)
+    : QObject(parent)  // 調用父類構造函數
 {
+    // 初始化完成
 }
 
+/**
+ * 析構函數 - ~SnapshotManager()
+ * 功能: 清理快照管理器資源
+ */
 SnapshotManager::~SnapshotManager()
 {
+    // 資源清理
 }
 
 QString SnapshotManager::snapshotsDir()

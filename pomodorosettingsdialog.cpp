@@ -1,9 +1,20 @@
-#include "pomodorosettingsdialog.h"
+// ========================================
+// 番茄鐘設置對話框類實現 (pomodorosettingsdialog.cpp)
+// 功能: 提供番茄鐘各項參數的設置UI對話框
+// 特性: 支持自定義工作/休息時間、長休週期、自動開始設置
+// ========================================
 
+#include "pomodorosettingsdialog.h" // 番茄鐘設置對話框頭文件
+
+/**
+ * 構造函數 - PomodoroSettingsDialog()
+ * 參數: parent - 父窗口指針
+ * 功能: 初始化番茄鐘設置對話框，調用setupUI()建立UI
+ */
 PomodoroSettingsDialog::PomodoroSettingsDialog(QWidget *parent)
     : QDialog(parent)
 {
-    setupUI();
+    setupUI();  // 構建用戶界面
 }
 
 void PomodoroSettingsDialog::setupUI()

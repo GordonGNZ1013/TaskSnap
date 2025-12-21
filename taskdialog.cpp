@@ -1,28 +1,44 @@
-#include "taskdialog.h"
-#include "ui_taskdialog.h"
-#include <QMessageBox>
+// ========================================
+// 任務對話框類實現 (taskdialog.cpp)
+// 功能: 提供創建、編輯任務的對話框UI
+// 特性: 支持優先級設置、提醒時間、標籤管理
+// ========================================
 
+#include "taskdialog.h"           // 任務對話框頭文件
+#include "ui_taskdialog.h"        // 自動生成的UI文件
+#include <QMessageBox>            // 消息框
+
+/**
+ * 構造函數 - TaskDialog()
+ * 參數: parent - 父窗口指針
+ * 功能: 初始化任務對話框
+ *  1. 設置UI布局
+ *  2. 設置默認的截止日期（明天）
+ *  3. 連接複選框信號以啟用/禁用日期時間編輯
+ */
 TaskDialog::TaskDialog(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::TaskDialog)
 {
-    ui->setupUi(this);
+    ui->setupUi(this);  // 從UI文件加載界面
 
-    // 設定預設日期時間為現在
+    // 設定預設日期時間為現在加一天
     QDateTime now = QDateTime::currentDateTime();
-    ui->editDueDateTime->setDateTime(now.addDays(1));  // 預設明天
+    ui->editDueDateTime->setDateTime(now.addDays(1));  // 預設截止日期為明天
     ui->editReminderDateTime->setDateTime(now.addDays(1));
 
-    // 連接勾選框信號
+    // 連接勾選框信號到槽函數
+    // 當"無截止日期"複選框被切換時，啟用或禁用日期編輯框
     connect(ui->chkNoDueDate, &QCheckBox::toggled, this, [this](bool checked) {
-        ui->editDueDateTime->setEnabled(!checked);
+        ui->editDueDateTime->setEnabled(!checked);  // checked時禁用，未checked時啟用
     });
 
+    // 當"無提醒"複選框被切換時，啟用或禁用提醒時間編輯框
     connect(ui->chkNoReminder, &QCheckBox::toggled, this, [this](bool checked) {
         ui->editReminderDateTime->setEnabled(!checked);
     });
 
-    // 預設提醒時間是停用的
+    // 預設提醒時間編輯框是禁用的（因為通常用戶不需要提醒）
     ui->editReminderDateTime->setEnabled(false);
 }
 

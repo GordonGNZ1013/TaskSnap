@@ -1,21 +1,35 @@
-#include "workstats.h"
-#include <QCoreApplication>
-#include <QDir>
-#include <QFile>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonValue>
-#include <QDate>
-#include <QDebug>
+// ========================================
+// 工作統計類實現 (workstats.cpp)
+// 功能: 記錄和管理用戶的工作統計數據
+// 統計項: 日/累計工作時間、日/累計番茄數量
+// 存儲方式: JSON格式，保存在data/workstats.json
+// ========================================
 
+#include "workstats.h"            // 工作統計頭文件
+#include <QCoreApplication>       // 應用程序路徑
+#include <QDir>                   // 目錄操作
+#include <QFile>                  // 文件操作
+#include <QJsonDocument>          // JSON文檔
+#include <QJsonObject>            // JSON對象
+#include <QJsonValue>             // JSON值
+#include <QDate>                  // 日期操作
+#include <QDebug>                 // 調試輸出
+
+/**
+ * 構造函數 - WorkStats()
+ * 功能: 初始化工作統計對象
+ *  1. 初始化所有統計計數器為0
+ *  2. 從文件加載已保存的統計數據
+ *  3. 檢查是否為新的一天，如果是則重置今日統計
+ */
 WorkStats::WorkStats()
-    : m_todayWorkSeconds(0)
-    , m_totalWorkSeconds(0)
-    , m_todayPomodoroCount(0)
-    , m_totalPomodoroCount(0)
+    : m_todayWorkSeconds(0)      // 今日工作秒數
+    , m_totalWorkSeconds(0)      // 累計工作秒數
+    , m_todayPomodoroCount(0)    // 今日番茄計數
+    , m_totalPomodoroCount(0)    // 累計番茄計數
 {
-    loadStats();
-    checkAndResetIfNewDay();
+    loadStats();                 // 從文件加載統計數據
+    checkAndResetIfNewDay();     // 檢查是否需要重置今日統計
 }
 
 void WorkStats::loadStats()

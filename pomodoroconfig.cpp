@@ -1,14 +1,24 @@
-#include "pomodoroconfig.h"
-#include <QCoreApplication>
-#include <QDir>
-#include <QFile>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QDebug>
+// ========================================
+// 番茄鐘配置類實現 (pomodoroconfig.cpp)
+// 功能: 讀取、保存、管理番茄工作法的時間配置
+// 存儲方式: JSON格式，保存在data/pomodoroconfig.json
+// ========================================
 
+#include "pomodoroconfig.h"       // 番茄鐘配置頭文件
+#include <QCoreApplication>       // 應用程序路徑
+#include <QDir>                   // 目錄操作
+#include <QFile>                  // 文件操作
+#include <QJsonDocument>          // JSON文檔
+#include <QJsonObject>            // JSON對象
+#include <QDebug>                 // 調試輸出
+
+/**
+ * 構造函數 - PomodoroConfig()
+ * 功能: 初始化番茄鐘配置對象，自動從配置文件加載設置
+ */
 PomodoroConfig::PomodoroConfig()
 {
-    loadSettings();
+    loadSettings();  // 從配置文件加載設置
 }
 
 void PomodoroConfig::loadSettings()

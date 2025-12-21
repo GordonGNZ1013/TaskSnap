@@ -1,33 +1,49 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "taskdialog.h"
-#include "pomodorosettingsdialog.h"
-#include <QMessageBox>
-#include <QListWidgetItem>
-#include <QCloseEvent>
-#include <QApplication>
-#include <QPainter>
-#include <QFileDialog>
-#include <QDesktopServices>
-#include <QUrl>
-#include <QMimeDatabase>
-#include <QFileInfo>
-#include <QUuid>
-#include <QStandardPaths>
+// ========================================
+// 主窗口類實現 (mainwindow.cpp)
+// 功能: 應用程序主界面，集成所有功能模塊
+// 模塊: 任務管理、番茄鐘、統計、通知、快照等
+// 界面: 三欄布局（左邊導航、中間任務列表、右邊詳情）
+// ========================================
 
+#include "mainwindow.h"            // 主窗口頭文件
+#include "ui_mainwindow.h"         // 自動生成的UI文件
+#include "taskdialog.h"            // 任務對話框
+#include "pomodorosettingsdialog.h" // 番茄鐘設置對話框
+#include <QMessageBox>             // 消息框
+#include <QListWidgetItem>         // 列表項
+#include <QCloseEvent>             // 關閉事件
+#include <QApplication>            // 應用程序
+#include <QPainter>                // 繪圖工具
+#include <QFileDialog>             // 文件選擇對話框
+#include <QDesktopServices>        // 桌面服務（打開文件等）
+#include <QUrl>                    // URL處理
+#include <QMimeDatabase>           // MIME類型數據庫
+#include <QFileInfo>               // 文件信息
+#include <QUuid>                   // UUID生成
+#include <QStandardPaths>          // 標準路徑
+
+/**
+ * 構造函數 - MainWindow()
+ * 參數: parent - 父窗口指針
+ * 功能: 初始化主窗口及所有模塊
+ *  1. 設置UI布局和字體大小
+ *  2. 初始化各功能模塊（數據庫、計時器、通知等）
+ *  3. 連接信號和槽函數
+ *  4. 設置系統托盤圖標
+ */
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , m_database(new Database(this))
-    , m_pomodoroTimer(new PomodoroTimer(this))
-    , m_notificationManager(new NotificationManager(this))
-    , m_snapshotManager(new SnapshotManager(this))
-    , m_workStats(new WorkStats())
-    , m_pomodoroConfig(new PomodoroConfig())
-    , m_trayIcon(nullptr)
-    , m_trayMenu(nullptr)
+    , m_database(new Database(this))           // 數據庫模塊
+    , m_pomodoroTimer(new PomodoroTimer(this)) // 番茄鐘計時器
+    , m_notificationManager(new NotificationManager(this))  // 通知管理器
+    , m_snapshotManager(new SnapshotManager(this))  // 快照管理器
+    , m_workStats(new WorkStats())             // 工作統計
+    , m_pomodoroConfig(new PomodoroConfig())   // 番茄鐘配置
+    , m_trayIcon(nullptr)                      // 系統托盤圖標
+    , m_trayMenu(nullptr)                      // 系統托盤菜單
 {
-    ui->setupUi(this);
+    ui->setupUi(this);  // 從UI文件加載界面
 
     // 設定全局字體大小（使所有文字和圖示更大更清晰）
     QFont globalFont = this->font();
