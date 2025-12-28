@@ -15,6 +15,7 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
@@ -44,6 +45,7 @@ public:
     QPushButton *btnToday;
     QPushButton *btnOverdue;
     QPushButton *btnCompleted;
+    QPushButton *btnCalendar;
     QSpacerItem *leftSpacer;
     QLabel *pomodoroTitle;
     QWidget *modeButtons;
@@ -79,6 +81,19 @@ public:
     QLabel *lblDetailPriority;
     QLabel *lblDescTitle;
     QTextEdit *txtDetailDescription;
+    QLabel *lblSubTaskTitle;
+    QLabel *lblSubTaskProgress;
+    QListWidget *subTaskListWidget;
+    QWidget *subTaskButtons;
+    QHBoxLayout *subTaskButtonsLayout;
+    QLineEdit *editNewSubTask;
+    QPushButton *btnAddSubTask;
+    QLabel *lblIdeaTitle;
+    QListWidget *ideaListWidget;
+    QWidget *ideaButtons;
+    QHBoxLayout *ideaButtonsLayout;
+    QLineEdit *editNewIdea;
+    QPushButton *btnAddIdea;
     QLabel *lblAttachTitle;
     QListWidget *attachmentListWidget;
     QPushButton *btnAddAttachment;
@@ -184,6 +199,20 @@ public:
         btnCompleted->setAutoExclusive(true);
 
         leftLayout->addWidget(btnCompleted);
+
+        btnCalendar = new QPushButton(leftPanel);
+        btnCalendar->setObjectName("btnCalendar");
+        btnCalendar->setStyleSheet(QString::fromUtf8("\n"
+"           QPushButton {\n"
+"             background-color: #16a085;\n"
+"             margin-top: 10px;\n"
+"           }\n"
+"           QPushButton:hover {\n"
+"             background-color: #1abc9c;\n"
+"           }\n"
+"          "));
+
+        leftLayout->addWidget(btnCalendar);
 
         leftSpacer = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
@@ -438,6 +467,150 @@ public:
 
         rightLayout->addWidget(txtDetailDescription);
 
+        lblSubTaskTitle = new QLabel(rightPanel);
+        lblSubTaskTitle->setObjectName("lblSubTaskTitle");
+        lblSubTaskTitle->setStyleSheet(QString::fromUtf8("font-weight: bold; padding-top: 15px;"));
+
+        rightLayout->addWidget(lblSubTaskTitle);
+
+        lblSubTaskProgress = new QLabel(rightPanel);
+        lblSubTaskProgress->setObjectName("lblSubTaskProgress");
+        lblSubTaskProgress->setStyleSheet(QString::fromUtf8("color: #7f8c8d; font-size: 12px;"));
+
+        rightLayout->addWidget(lblSubTaskProgress);
+
+        subTaskListWidget = new QListWidget(rightPanel);
+        subTaskListWidget->setObjectName("subTaskListWidget");
+        subTaskListWidget->setMinimumSize(QSize(0, 80));
+        subTaskListWidget->setMaximumSize(QSize(16777215, 150));
+        subTaskListWidget->setStyleSheet(QString::fromUtf8("\n"
+"           QListWidget {\n"
+"             background-color: white;\n"
+"             border: 1px solid #bdc3c7;\n"
+"             border-radius: 5px;\n"
+"             padding: 5px;\n"
+"           }\n"
+"           QListWidget::item {\n"
+"             padding: 8px;\n"
+"             border-bottom: 1px solid #ecf0f1;\n"
+"             color: #2c3e50;\n"
+"           }\n"
+"           QListWidget::item:selected {\n"
+"             background-color: #e8f4fc;\n"
+"           }\n"
+"          "));
+
+        rightLayout->addWidget(subTaskListWidget);
+
+        subTaskButtons = new QWidget(rightPanel);
+        subTaskButtons->setObjectName("subTaskButtons");
+        subTaskButtonsLayout = new QHBoxLayout(subTaskButtons);
+        subTaskButtonsLayout->setSpacing(5);
+        subTaskButtonsLayout->setObjectName("subTaskButtonsLayout");
+        subTaskButtonsLayout->setContentsMargins(0, 0, 0, 0);
+        editNewSubTask = new QLineEdit(subTaskButtons);
+        editNewSubTask->setObjectName("editNewSubTask");
+        editNewSubTask->setStyleSheet(QString::fromUtf8("\n"
+"              QLineEdit {\n"
+"                padding: 6px;\n"
+"                border: 1px solid #bdc3c7;\n"
+"                border-radius: 3px;\n"
+"              }\n"
+"             "));
+
+        subTaskButtonsLayout->addWidget(editNewSubTask);
+
+        btnAddSubTask = new QPushButton(subTaskButtons);
+        btnAddSubTask->setObjectName("btnAddSubTask");
+        btnAddSubTask->setMaximumSize(QSize(40, 16777215));
+        btnAddSubTask->setStyleSheet(QString::fromUtf8("\n"
+"              QPushButton {\n"
+"                background-color: #27ae60;\n"
+"                color: white;\n"
+"                border: none;\n"
+"                padding: 6px;\n"
+"                border-radius: 3px;\n"
+"                font-weight: bold;\n"
+"              }\n"
+"              QPushButton:hover {\n"
+"                background-color: #2ecc71;\n"
+"              }\n"
+"             "));
+
+        subTaskButtonsLayout->addWidget(btnAddSubTask);
+
+
+        rightLayout->addWidget(subTaskButtons);
+
+        lblIdeaTitle = new QLabel(rightPanel);
+        lblIdeaTitle->setObjectName("lblIdeaTitle");
+        lblIdeaTitle->setStyleSheet(QString::fromUtf8("font-weight: bold; padding-top: 15px;"));
+
+        rightLayout->addWidget(lblIdeaTitle);
+
+        ideaListWidget = new QListWidget(rightPanel);
+        ideaListWidget->setObjectName("ideaListWidget");
+        ideaListWidget->setMinimumSize(QSize(0, 60));
+        ideaListWidget->setMaximumSize(QSize(16777215, 120));
+        ideaListWidget->setStyleSheet(QString::fromUtf8("\n"
+"           QListWidget {\n"
+"             background-color: #fffef0;\n"
+"             border: 1px solid #f1c40f;\n"
+"             border-radius: 5px;\n"
+"             padding: 5px;\n"
+"           }\n"
+"           QListWidget::item {\n"
+"             padding: 6px;\n"
+"             border-bottom: 1px solid #fef9e7;\n"
+"             color: #2c3e50;\n"
+"           }\n"
+"           QListWidget::item:selected {\n"
+"             background-color: #fef9e7;\n"
+"           }\n"
+"          "));
+
+        rightLayout->addWidget(ideaListWidget);
+
+        ideaButtons = new QWidget(rightPanel);
+        ideaButtons->setObjectName("ideaButtons");
+        ideaButtonsLayout = new QHBoxLayout(ideaButtons);
+        ideaButtonsLayout->setSpacing(5);
+        ideaButtonsLayout->setObjectName("ideaButtonsLayout");
+        ideaButtonsLayout->setContentsMargins(0, 0, 0, 0);
+        editNewIdea = new QLineEdit(ideaButtons);
+        editNewIdea->setObjectName("editNewIdea");
+        editNewIdea->setStyleSheet(QString::fromUtf8("\n"
+"              QLineEdit {\n"
+"                padding: 6px;\n"
+"                border: 1px solid #f1c40f;\n"
+"                border-radius: 3px;\n"
+"                background-color: #fffef0;\n"
+"              }\n"
+"             "));
+
+        ideaButtonsLayout->addWidget(editNewIdea);
+
+        btnAddIdea = new QPushButton(ideaButtons);
+        btnAddIdea->setObjectName("btnAddIdea");
+        btnAddIdea->setMaximumSize(QSize(40, 16777215));
+        btnAddIdea->setStyleSheet(QString::fromUtf8("\n"
+"              QPushButton {\n"
+"                background-color: #f1c40f;\n"
+"                color: white;\n"
+"                border: none;\n"
+"                padding: 6px;\n"
+"                border-radius: 3px;\n"
+"              }\n"
+"              QPushButton:hover {\n"
+"                background-color: #f4d03f;\n"
+"              }\n"
+"             "));
+
+        ideaButtonsLayout->addWidget(btnAddIdea);
+
+
+        rightLayout->addWidget(ideaButtons);
+
         lblAttachTitle = new QLabel(rightPanel);
         lblAttachTitle->setObjectName("lblAttachTitle");
         lblAttachTitle->setStyleSheet(QString::fromUtf8("font-weight: bold; padding-top: 15px;"));
@@ -446,8 +619,8 @@ public:
 
         attachmentListWidget = new QListWidget(rightPanel);
         attachmentListWidget->setObjectName("attachmentListWidget");
-        attachmentListWidget->setMinimumSize(QSize(0, 120));
-        attachmentListWidget->setMaximumSize(QSize(16777215, 250));
+        attachmentListWidget->setMinimumSize(QSize(0, 80));
+        attachmentListWidget->setMaximumSize(QSize(16777215, 150));
         attachmentListWidget->setStyleSheet(QString::fromUtf8("\n"
 "           QListWidget {\n"
 "             background-color: white;\n"
@@ -456,7 +629,7 @@ public:
 "             padding: 8px;\n"
 "           }\n"
 "           QListWidget::item {\n"
-"             padding: 15px;\n"
+"             padding: 10px;\n"
 "             border-bottom: 1px solid #ecf0f1;\n"
 "             color: #2c3e50;\n"
 "             background-color: white;\n"
@@ -602,6 +775,7 @@ public:
         btnToday->setText(QCoreApplication::translate("MainWindow", "\360\237\223\205 \344\273\212\345\244\251", nullptr));
         btnOverdue->setText(QCoreApplication::translate("MainWindow", "\342\232\240\357\270\217 \345\267\262\351\201\216\346\234\237", nullptr));
         btnCompleted->setText(QCoreApplication::translate("MainWindow", "\342\234\205 \345\267\262\345\256\214\346\210\220", nullptr));
+        btnCalendar->setText(QCoreApplication::translate("MainWindow", "\360\237\223\205 \350\241\214\344\272\213\346\233\206", nullptr));
         pomodoroTitle->setText(QCoreApplication::translate("MainWindow", "\360\237\215\205 \347\225\252\350\214\204\351\220\230", nullptr));
         btnPomodoroMode->setText(QCoreApplication::translate("MainWindow", "\360\237\215\205 \347\225\252\350\214\204\351\220\230", nullptr));
 #if QT_CONFIG(tooltip)
@@ -640,6 +814,13 @@ public:
         lblDetailDue->setText(QString());
         lblDetailPriority->setText(QString());
         lblDescTitle->setText(QCoreApplication::translate("MainWindow", "\346\217\217\350\277\260", nullptr));
+        lblSubTaskTitle->setText(QCoreApplication::translate("MainWindow", "\360\237\223\235 \345\255\220\344\273\273\345\213\231", nullptr));
+        lblSubTaskProgress->setText(QString());
+        editNewSubTask->setPlaceholderText(QCoreApplication::translate("MainWindow", "\350\274\270\345\205\245\345\255\220\344\273\273\345\213\231...", nullptr));
+        btnAddSubTask->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
+        lblIdeaTitle->setText(QCoreApplication::translate("MainWindow", "\360\237\222\241 \351\235\210\346\204\237\346\224\266\351\233\206\347\256\261", nullptr));
+        editNewIdea->setPlaceholderText(QCoreApplication::translate("MainWindow", "\345\277\253\351\200\237\350\250\230\351\214\204\351\235\210\346\204\237...", nullptr));
+        btnAddIdea->setText(QCoreApplication::translate("MainWindow", "\360\237\222\241", nullptr));
         lblAttachTitle->setText(QCoreApplication::translate("MainWindow", "\360\237\223\216 \351\231\204\344\273\266", nullptr));
         btnAddAttachment->setText(QCoreApplication::translate("MainWindow", "+ \346\226\260\345\242\236\351\231\204\344\273\266", nullptr));
         btnEditTask->setText(QCoreApplication::translate("MainWindow", "\342\234\217\357\270\217 \347\267\250\350\274\257", nullptr));

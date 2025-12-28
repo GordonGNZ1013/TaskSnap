@@ -6,6 +6,9 @@ debug/pomodorotimer.o
 debug/pomodorosettingsdialog.o
 debug/notificationmanager.o
 debug/snapshotmanager.o
+debug/workstats.o
+debug/pomodoroconfig.o
+debug/calendardialog.o
 debug/qrc_resources.o
 debug/moc_mainwindow.o
 debug/moc_database.o
@@ -14,3 +17,4 @@ debug/moc_pomodorotimer.o
 debug/moc_pomodorosettingsdialog.o
 debug/moc_notificationmanager.o
 debug/moc_snapshotmanager.o
+debug/moc_calendardialog.o

@@ -88,9 +88,11 @@ bool Database::initialize()
 /**
  * 創建數據表 - createTables()
  * 返回值: bool - 創建成功返回true，失敗返回false
- * 功能: 創建兩個主要的數據表
+ * 功能: 創建所有需要的數據表
  *  1. tasks 表 - 存儲任務信息
  *  2. attachments 表 - 存儲任務附件信息
+ *  3. subtasks 表 - 存儲子任務信息
+ *  4. ideas 表 - 存儲靈感/待辦信息
  */
 bool Database::createTables()
 {
@@ -136,6 +138,42 @@ bool Database::createTables()
     // 執行附件表創建語句
     if (!query.exec(createAttachmentsTable)) {
         qDebug() << "建立附件表失敗:" << query.lastError().text();
+        return false;
+    }
+    
+    // 建立子任務表 - 存儲任務的子任務信息
+    QString createSubTasksTable = R"(
+        CREATE TABLE IF NOT EXISTS subtasks (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,        -- 子任務唯一ID
+            task_id INTEGER,                             -- 關聯的父任務ID
+            title TEXT NOT NULL,                         -- 子任務標題
+            is_completed INTEGER DEFAULT 0,              -- 完成狀態
+            sort_order INTEGER DEFAULT 0,                -- 排序順序
+            created_at INTEGER,                          -- 創建時間戳
+            completed_at INTEGER,                        -- 完成時間戳
+            FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE
+        )
+    )";
+    
+    if (!query.exec(createSubTasksTable)) {
+        qDebug() << "建立子任務表失敗:" << query.lastError().text();
+        return false;
+    }
+    
+    // 建立靈感/待辦表 - 存儲任務中的靈感和臨時想法
+    QString createIdeasTable = R"(
+        CREATE TABLE IF NOT EXISTS ideas (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,        -- 靈感唯一ID
+            task_id INTEGER,                             -- 關聯的任務ID
+            content TEXT NOT NULL,                       -- 靈感內容
+            created_at INTEGER,                          -- 創建時間戳
+            is_important INTEGER DEFAULT 0,              -- 是否重要/標星
+            FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE
+        )
+    )";
+    
+    if (!query.exec(createIdeasTable)) {
+        qDebug() << "建立靈感表失敗:" << query.lastError().text();
         return false;
     }
 
@@ -582,4 +620,278 @@ QList<Attachment> Database::getAttachments(int taskId)
     }
     
     return attachments;  // 返回附件列表
+}
+
+// ============================================================
+// 子任務操作模塊 - 處理子任務的增、刪、改、查操作
+// ============================================================
+
+/**
+ * 新增子任務 - addSubTask()
+ */
+bool Database::addSubTask(SubTask &subTask)
+{
+    QSqlQuery query;
+    query.prepare(R"(
+        INSERT INTO subtasks (task_id, title, is_completed, sort_order, created_at)
+        VALUES (:task_id, :title, :completed, :sort_order, :created)
+    )");
+    
+    subTask.createdAt = QDateTime::currentDateTime();
+    
+    query.bindValue(":task_id", subTask.taskId);
+    query.bindValue(":title", subTask.title);
+    query.bindValue(":completed", subTask.isCompleted ? 1 : 0);
+    query.bindValue(":sort_order", subTask.sortOrder);
+    query.bindValue(":created", subTask.createdAt.toSecsSinceEpoch());
+    
+    if (!query.exec()) {
+        qDebug() << "新增子任務失敗:" << query.lastError().text();
+        return false;
+    }
+    
+    subTask.id = query.lastInsertId().toInt();
+    qDebug() << "子任務已新增，ID:" << subTask.id;
+    return true;
+}
+
+/**
+ * 更新子任務 - updateSubTask()
+ */
+bool Database::updateSubTask(const SubTask &subTask)
+{
+    QSqlQuery query;
+    query.prepare(R"(
+        UPDATE subtasks SET
+            title = :title,
+            is_completed = :completed,
+            sort_order = :sort_order,
+            completed_at = :completed_at
+        WHERE id = :id
+    )");
+    
+    query.bindValue(":id", subTask.id);
+    query.bindValue(":title", subTask.title);
+    query.bindValue(":completed", subTask.isCompleted ? 1 : 0);
+    query.bindValue(":sort_order", subTask.sortOrder);
+    query.bindValue(":completed_at", subTask.completedAt.isValid() ? 
+                    subTask.completedAt.toSecsSinceEpoch() : QVariant());
+    
+    if (!query.exec()) {
+        qDebug() << "更新子任務失敗:" << query.lastError().text();
+        return false;
+    }
+    
+    return true;
+}
+
+/**
+ * 刪除子任務 - deleteSubTask()
+ */
+bool Database::deleteSubTask(int subTaskId)
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM subtasks WHERE id = :id");
+    query.bindValue(":id", subTaskId);
+    
+    if (!query.exec()) {
+        qDebug() << "刪除子任務失敗:" << query.lastError().text();
+        return false;
+    }
+    
+    qDebug() << "子任務已刪除，ID:" << subTaskId;
+    return true;
+}
+
+/**
+ * 標記子任務完成 - markSubTaskCompleted()
+ */
+bool Database::markSubTaskCompleted(int subTaskId, bool completed)
+{
+    QSqlQuery query;
+    query.prepare(R"(
+        UPDATE subtasks SET
+            is_completed = :completed,
+            completed_at = :completed_at
+        WHERE id = :id
+    )");
+    
+    QDateTime now = QDateTime::currentDateTime();
+    query.bindValue(":id", subTaskId);
+    query.bindValue(":completed", completed ? 1 : 0);
+    query.bindValue(":completed_at", completed ? now.toSecsSinceEpoch() : QVariant());
+    
+    if (!query.exec()) {
+        qDebug() << "標記子任務完成失敗:" << query.lastError().text();
+        return false;
+    }
+    
+    return true;
+}
+
+/**
+ * 獲取任務的所有子任務 - getSubTasks()
+ */
+QList<SubTask> Database::getSubTasks(int taskId)
+{
+    QList<SubTask> subTasks;
+    
+    QSqlQuery query;
+    query.prepare("SELECT * FROM subtasks WHERE task_id = :task_id ORDER BY sort_order ASC, created_at ASC");
+    query.bindValue(":task_id", taskId);
+    
+    if (!query.exec()) {
+        qDebug() << "查詢子任務失敗:" << query.lastError().text();
+        return subTasks;
+    }
+    
+    while (query.next()) {
+        SubTask st;
+        st.id = query.value("id").toInt();
+        st.taskId = query.value("task_id").toInt();
+        st.title = query.value("title").toString();
+        st.isCompleted = query.value("is_completed").toInt() == 1;
+        st.sortOrder = query.value("sort_order").toInt();
+        
+        qint64 createdSecs = query.value("created_at").toLongLong();
+        if (createdSecs > 0) {
+            st.createdAt = QDateTime::fromSecsSinceEpoch(createdSecs);
+        }
+        
+        qint64 completedSecs = query.value("completed_at").toLongLong();
+        if (completedSecs > 0) {
+            st.completedAt = QDateTime::fromSecsSinceEpoch(completedSecs);
+        }
+        
+        subTasks.append(st);
+    }
+    
+    return subTasks;
+}
+
+// ============================================================
+// 靈感/待辦操作模塊 - 處理靈感的增、刪、改、查操作
+// ============================================================
+
+/**
+ * 新增靈感 - addIdeaNote()
+ */
+bool Database::addIdeaNote(IdeaNote &idea)
+{
+    QSqlQuery query;
+    query.prepare(R"(
+        INSERT INTO ideas (task_id, content, created_at, is_important)
+        VALUES (:task_id, :content, :created, :important)
+    )");
+    
+    idea.createdAt = QDateTime::currentDateTime();
+    
+    query.bindValue(":task_id", idea.taskId);
+    query.bindValue(":content", idea.content);
+    query.bindValue(":created", idea.createdAt.toSecsSinceEpoch());
+    query.bindValue(":important", idea.isImportant ? 1 : 0);
+    
+    if (!query.exec()) {
+        qDebug() << "新增靈感失敗:" << query.lastError().text();
+        return false;
+    }
+    
+    idea.id = query.lastInsertId().toInt();
+    qDebug() << "靈感已新增，ID:" << idea.id;
+    return true;
+}
+
+/**
+ * 更新靈感 - updateIdeaNote()
+ */
+bool Database::updateIdeaNote(const IdeaNote &idea)
+{
+    QSqlQuery query;
+    query.prepare(R"(
+        UPDATE ideas SET
+            content = :content,
+            is_important = :important
+        WHERE id = :id
+    )");
+    
+    query.bindValue(":id", idea.id);
+    query.bindValue(":content", idea.content);
+    query.bindValue(":important", idea.isImportant ? 1 : 0);
+    
+    if (!query.exec()) {
+        qDebug() << "更新靈感失敗:" << query.lastError().text();
+        return false;
+    }
+    
+    return true;
+}
+
+/**
+ * 刪除靈感 - deleteIdeaNote()
+ */
+bool Database::deleteIdeaNote(int ideaId)
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM ideas WHERE id = :id");
+    query.bindValue(":id", ideaId);
+    
+    if (!query.exec()) {
+        qDebug() << "刪除靈感失敗:" << query.lastError().text();
+        return false;
+    }
+    
+    qDebug() << "靈感已刪除，ID:" << ideaId;
+    return true;
+}
+
+/**
+ * 切換靈感重要標記 - toggleIdeaImportant()
+ */
+bool Database::toggleIdeaImportant(int ideaId, bool important)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE ideas SET is_important = :important WHERE id = :id");
+    query.bindValue(":id", ideaId);
+    query.bindValue(":important", important ? 1 : 0);
+    
+    if (!query.exec()) {
+        qDebug() << "切換靈感重要標記失敗:" << query.lastError().text();
+        return false;
+    }
+    
+    return true;
+}
+
+/**
+ * 獲取任務的所有靈感 - getIdeaNotes()
+ */
+QList<IdeaNote> Database::getIdeaNotes(int taskId)
+{
+    QList<IdeaNote> ideas;
+    
+    QSqlQuery query;
+    query.prepare("SELECT * FROM ideas WHERE task_id = :task_id ORDER BY is_important DESC, created_at DESC");
+    query.bindValue(":task_id", taskId);
+    
+    if (!query.exec()) {
+        qDebug() << "查詢靈感失敗:" << query.lastError().text();
+        return ideas;
+    }
+    
+    while (query.next()) {
+        IdeaNote idea;
+        idea.id = query.value("id").toInt();
+        idea.taskId = query.value("task_id").toInt();
+        idea.content = query.value("content").toString();
+        idea.isImportant = query.value("is_important").toInt() == 1;
+        
+        qint64 createdSecs = query.value("created_at").toLongLong();
+        if (createdSecs > 0) {
+            idea.createdAt = QDateTime::fromSecsSinceEpoch(createdSecs);
+        }
+        
+        ideas.append(idea);
+    }
+    
+    return ideas;
 }

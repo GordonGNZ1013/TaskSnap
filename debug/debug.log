@@ -498,3 +498,185 @@
 [DEBUG] 2025-12-18 10:19:20.765 - 載入任務數量: 4
 [DEBUG] 2025-12-18 10:19:20.765 - ===== 任務完成處理結束 =====
 
+[DEBUG] 2025-12-29 04:32:57.980 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-29 04:32:57.983 - 應用目錄: "C:/Users/User/Documents/GitHub/TaskSnap#/debug"
+[DEBUG] 2025-12-29 04:32:57.983 - 時間: "2025-12-29 04:32:57"
+[INFO ] 2025-12-29 04:32:58.005 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-29 04:33:01.024 - 數據目錄: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data"
+[DEBUG] 2025-12-29 04:33:01.024 - 資料庫路徑: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/tasks.db"
+[DEBUG] 2025-12-29 04:33:01.133 - 資料表建立成功
+[DEBUG] 2025-12-29 04:33:01.134 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-29 04:33:01.134 - 數據存儲位置: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data"
+[DEBUG] 2025-12-29 04:33:01.162 - 提醒檢查已啟動
+[DEBUG] 2025-12-29 04:33:01.164 - 載入任務數量: 4
+[DEBUG] 2025-12-29 05:12:15.006 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-29 05:12:15.007 - 應用目錄: "C:/Users/User/Documents/GitHub/TaskSnap#/debug"
+[DEBUG] 2025-12-29 05:12:15.007 - 時間: "2025-12-29 05:12:15"
+[INFO ] 2025-12-29 05:12:15.220 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-29 05:12:17.347 - 未找到統計文件，使用默認值 "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/workstats.json"
+[DEBUG] 2025-12-29 05:12:17.347 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-29 05:12:17.347 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-29 05:12:17.458 - 數據目錄: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data"
+[DEBUG] 2025-12-29 05:12:17.458 - 資料庫路徑: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/tasks.db"
+[DEBUG] 2025-12-29 05:12:17.497 - 資料表建立成功
+[DEBUG] 2025-12-29 05:12:17.497 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-29 05:12:17.497 - 數據存儲位置: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data"
+[DEBUG] 2025-12-29 05:12:17.528 - 提醒檢查已啟動
+[DEBUG] 2025-12-29 05:12:17.528 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-29 05:12:17.530 - 載入任務數量: 4
+[DEBUG] 2025-12-29 05:13:09.719 - 新增任務成功，ID: 5
+[DEBUG] 2025-12-29 05:13:09.720 - 載入任務數量: 5
+[DEBUG] 2025-12-29 05:14:03.655 - 子任務已新增，ID: 1
+[DEBUG] 2025-12-29 05:14:10.746 - 子任務已新增，ID: 2
+[DEBUG] 2025-12-29 05:14:33.339 - 子任務已新增，ID: 3
+[DEBUG] 2025-12-29 05:14:52.807 - 靈感已新增，ID: 1
+[DEBUG] 2025-12-29 05:15:52.976 - 
+===== 開始處理任務完成 =====
+[DEBUG] 2025-12-29 05:15:52.976 - 任務 ID: 5
+[DEBUG] 2025-12-29 05:15:52.976 - 任務標題: "QT期末報告"
+[DEBUG] 2025-12-29 05:15:52.976 - 新狀態: true
+[DEBUG] 2025-12-29 05:15:53.010 - 標記任務 完成 ，ID: 5
+[DEBUG] 2025-12-29 05:15:53.010 - ✓ 任務狀態已更新
+[DEBUG] 2025-12-29 05:15:53.010 - 
+開始建立快照流程...
+[DEBUG] 2025-12-29 05:15:53.010 - ✓ 已載入任務信息
+[DEBUG] 2025-12-29 05:15:53.010 -   - 標題： "QT期末報告"
+[DEBUG] 2025-12-29 05:15:53.010 -   - 初始附件數量： 0
+[DEBUG] 2025-12-29 05:15:53.011 - ✓ 已載入附件
+[DEBUG] 2025-12-29 05:15:53.011 -   - 最終附件數量： 0
+[DEBUG] 2025-12-29 05:15:53.011 - 
+呼叫 createSnapshot()...
+[DEBUG] 2025-12-29 05:15:53.011 - ========== 開始建立快照 ==========
+[DEBUG] 2025-12-29 05:15:53.011 - 任務 ID: 5
+[DEBUG] 2025-12-29 05:15:53.011 - 任務標題: "QT期末報告"
+[DEBUG] 2025-12-29 05:15:53.011 - 快照目錄: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots"
+[DEBUG] 2025-12-29 05:15:53.011 - 臨時目錄: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/.temp_5_1766956553011"
+[DEBUG] 2025-12-29 05:15:53.012 - 臨時目錄建立成功
+[DEBUG] 2025-12-29 05:15:53.012 - 開始建立任務信息文件...
+[DEBUG] 2025-12-29 05:15:53.012 - 目標目錄： "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/.temp_5_1766956553011"
+[DEBUG] 2025-12-29 05:15:53.012 - 信息文件路徑： "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/.temp_5_1766956553011/TaskInfo.txt"
+[DEBUG] 2025-12-29 05:15:53.013 - ✓ 文件已打開
+[DEBUG] 2025-12-29 05:15:53.013 - ✓ 文本流已初始化
+[DEBUG] 2025-12-29 05:15:53.013 - ✓ 任務信息文件建立成功
+[DEBUG] 2025-12-29 05:15:53.014 - 任務信息文件建立成功
+[DEBUG] 2025-12-29 05:15:53.014 - 沒有附件
+[DEBUG] 2025-12-29 05:15:53.014 - ZIP 文件名: "Task_000005_2025-12-29_05-15-53.zip"
+[DEBUG] 2025-12-29 05:15:53.014 - ZIP 文件完整路徑: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/Task_000005_2025-12-29_05-15-53.zip"
+[DEBUG] 2025-12-29 05:15:53.014 - 開始建立 ZIP 存檔...
+[DEBUG] 2025-12-29 05:15:53.014 - 開始建立 ZIP 存檔
+[DEBUG] 2025-12-29 05:15:53.015 - 源目錄: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/.temp_5_1766956553011"
+[DEBUG] 2025-12-29 05:15:53.015 - ZIP 路徑: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/Task_000005_2025-12-29_05-15-53.zip"
+[DEBUG] 2025-12-29 05:15:53.015 - 嘗試使用 tar 命令...
+[DEBUG] 2025-12-29 05:15:53.120 - ✓ 使用 tar 命令成功建立 ZIP 存檔
+[DEBUG] 2025-12-29 05:15:53.120 - ZIP 存檔建立成功
+[DEBUG] 2025-12-29 05:15:53.121 - 臨時目錄已清理
+[DEBUG] 2025-12-29 05:15:53.121 - ========== 快照建立完成 ==========
+[DEBUG] 2025-12-29 05:15:53.121 - 快照已建立： "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/Task_000005_2025-12-29_05-15-53.zip"
+[DEBUG] 2025-12-29 05:15:53.121 - 快照建立完成，返回路徑: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/Task_000005_2025-12-29_05-15-53.zip"
+[DEBUG] 2025-12-29 05:15:53.121 - ✓✓✓ 快照建立成功！
+[DEBUG] 2025-12-29 05:15:54.928 - 重新載入任務列表...
+[DEBUG] 2025-12-29 05:15:54.930 - 載入任務數量: 5
+[DEBUG] 2025-12-29 05:15:54.933 - ===== 任務完成處理結束 =====
+
+[DEBUG] 2025-12-29 05:17:19.304 - 
+===== 開始處理任務完成 =====
+[DEBUG] 2025-12-29 05:17:19.304 - 任務 ID: 5
+[DEBUG] 2025-12-29 05:17:19.304 - 任務標題: "QT期末報告"
+[DEBUG] 2025-12-29 05:17:19.304 - 新狀態: false
+[DEBUG] 2025-12-29 05:17:19.338 - 標記任務 未完成 ，ID: 5
+[DEBUG] 2025-12-29 05:17:19.338 - ✓ 任務狀態已更新
+[DEBUG] 2025-12-29 05:17:19.338 - 重新載入任務列表...
+[DEBUG] 2025-12-29 05:17:19.339 - 載入任務數量: 5
+[DEBUG] 2025-12-29 05:17:19.341 - ===== 任務完成處理結束 =====
+
+[DEBUG] 2025-12-29 05:17:36.329 - 靈感已新增，ID: 2
+[DEBUG] 2025-12-29 05:24:36.425 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-29 05:24:36.426 - 應用目錄: "C:/Users/User/Documents/GitHub/TaskSnap#/debug"
+[DEBUG] 2025-12-29 05:24:36.426 - 時間: "2025-12-29 05:24:36"
+[INFO ] 2025-12-29 05:24:36.503 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-29 05:24:38.737 - 未找到統計文件，使用默認值 "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/workstats.json"
+[DEBUG] 2025-12-29 05:24:38.738 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-29 05:24:38.738 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-29 05:24:38.864 - 數據目錄: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data"
+[DEBUG] 2025-12-29 05:24:38.864 - 資料庫路徑: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/tasks.db"
+[DEBUG] 2025-12-29 05:24:38.891 - 資料表建立成功
+[DEBUG] 2025-12-29 05:24:38.891 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-29 05:24:38.891 - 數據存儲位置: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data"
+[DEBUG] 2025-12-29 05:24:38.920 - 提醒檢查已啟動
+[DEBUG] 2025-12-29 05:24:38.920 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-29 05:24:38.926 - 載入任務數量: 5
+[DEBUG] 2025-12-29 05:26:57.481 - 更新任務成功，ID: 5
+[DEBUG] 2025-12-29 05:26:57.485 - 載入任務數量: 5
+[DEBUG] 2025-12-29 05:27:19.909 - 更新任務成功，ID: 5
+[DEBUG] 2025-12-29 05:27:19.913 - 載入任務數量: 5
+[DEBUG] 2025-12-29 05:29:13.764 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-29 05:29:13.765 - 應用目錄: "C:/Users/User/Documents/GitHub/TaskSnap#/debug"
+[DEBUG] 2025-12-29 05:29:13.765 - 時間: "2025-12-29 05:29:13"
+[INFO ] 2025-12-29 05:29:13.775 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-29 05:29:15.914 - 未找到統計文件，使用默認值 "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/workstats.json"
+[DEBUG] 2025-12-29 05:29:15.914 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-29 05:29:15.914 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-29 05:29:15.963 - 數據目錄: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data"
+[DEBUG] 2025-12-29 05:29:15.963 - 資料庫路徑: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/tasks.db"
+[DEBUG] 2025-12-29 05:29:15.968 - 資料表建立成功
+[DEBUG] 2025-12-29 05:29:15.968 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-29 05:29:15.968 - 數據存儲位置: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data"
+[DEBUG] 2025-12-29 05:29:15.988 - 提醒檢查已啟動
+[DEBUG] 2025-12-29 05:29:15.988 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-29 05:29:15.989 - 載入任務數量: 5
+[DEBUG] 2025-12-29 05:29:47.275 - 
+===== 開始處理任務完成 =====
+[DEBUG] 2025-12-29 05:29:47.275 - 任務 ID: 5
+[DEBUG] 2025-12-29 05:29:47.275 - 任務標題: "QT期末報告"
+[DEBUG] 2025-12-29 05:29:47.275 - 新狀態: true
+[DEBUG] 2025-12-29 05:29:47.309 - 標記任務 完成 ，ID: 5
+[DEBUG] 2025-12-29 05:29:47.309 - ✓ 任務狀態已更新
+[DEBUG] 2025-12-29 05:29:47.309 - 
+開始建立快照流程...
+[DEBUG] 2025-12-29 05:29:47.310 - ✓ 已載入任務信息
+[DEBUG] 2025-12-29 05:29:47.310 -   - 標題： "QT期末報告"
+[DEBUG] 2025-12-29 05:29:47.310 -   - 初始附件數量： 0
+[DEBUG] 2025-12-29 05:29:47.310 - ✓ 已載入附件
+[DEBUG] 2025-12-29 05:29:47.310 -   - 最終附件數量： 0
+[DEBUG] 2025-12-29 05:29:47.310 - 
+呼叫 createSnapshot()...
+[DEBUG] 2025-12-29 05:29:47.310 - ========== 開始建立快照 ==========
+[DEBUG] 2025-12-29 05:29:47.310 - 任務 ID: 5
+[DEBUG] 2025-12-29 05:29:47.310 - 任務標題: "QT期末報告"
+[DEBUG] 2025-12-29 05:29:47.311 - 快照目錄: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots"
+[DEBUG] 2025-12-29 05:29:47.311 - 臨時目錄: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/.temp_5_1766957387311"
+[DEBUG] 2025-12-29 05:29:47.311 - 臨時目錄建立成功
+[DEBUG] 2025-12-29 05:29:47.311 - 開始建立任務信息文件...
+[DEBUG] 2025-12-29 05:29:47.311 - 目標目錄： "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/.temp_5_1766957387311"
+[DEBUG] 2025-12-29 05:29:47.311 - 信息文件路徑： "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/.temp_5_1766957387311/TaskInfo.txt"
+[DEBUG] 2025-12-29 05:29:47.312 - ✓ 文件已打開
+[DEBUG] 2025-12-29 05:29:47.312 - ✓ 文本流已初始化
+[DEBUG] 2025-12-29 05:29:47.312 - ✓ 任務信息文件建立成功
+[DEBUG] 2025-12-29 05:29:47.312 - 任務信息文件建立成功
+[DEBUG] 2025-12-29 05:29:47.312 - 沒有附件
+[DEBUG] 2025-12-29 05:29:47.313 - ZIP 文件名: "Task_000005_2025-12-29_05-29-47.zip"
+[DEBUG] 2025-12-29 05:29:47.313 - ZIP 文件完整路徑: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/Task_000005_2025-12-29_05-29-47.zip"
+[DEBUG] 2025-12-29 05:29:47.313 - 開始建立 ZIP 存檔...
+[DEBUG] 2025-12-29 05:29:47.313 - 開始建立 ZIP 存檔
+[DEBUG] 2025-12-29 05:29:47.313 - 源目錄: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/.temp_5_1766957387311"
+[DEBUG] 2025-12-29 05:29:47.313 - ZIP 路徑: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/Task_000005_2025-12-29_05-29-47.zip"
+[DEBUG] 2025-12-29 05:29:47.313 - 嘗試使用 tar 命令...
+[DEBUG] 2025-12-29 05:29:47.392 - ✓ 使用 tar 命令成功建立 ZIP 存檔
+[DEBUG] 2025-12-29 05:29:47.392 - ZIP 存檔建立成功
+[DEBUG] 2025-12-29 05:29:47.392 - 臨時目錄已清理
+[DEBUG] 2025-12-29 05:29:47.392 - ========== 快照建立完成 ==========
+[DEBUG] 2025-12-29 05:29:47.392 - 快照已建立： "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/Task_000005_2025-12-29_05-29-47.zip"
+[DEBUG] 2025-12-29 05:29:47.392 - 快照建立完成，返回路徑: "C:/Users/User/Documents/GitHub/TaskSnap#/debug/data/snapshots/Task_000005_2025-12-29_05-29-47.zip"
+[DEBUG] 2025-12-29 05:29:47.393 - ✓✓✓ 快照建立成功！
+[DEBUG] 2025-12-29 05:29:49.515 - 重新載入任務列表...
+[DEBUG] 2025-12-29 05:29:49.517 - 載入任務數量: 5
+[DEBUG] 2025-12-29 05:29:49.520 - ===== 任務完成處理結束 =====
+

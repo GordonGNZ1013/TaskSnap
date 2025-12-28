@@ -21,7 +21,8 @@ SOURCES += \
     notificationmanager.cpp \
     snapshotmanager.cpp \
     workstats.cpp \
-    pomodoroconfig.cpp
+    pomodoroconfig.cpp \
+    calendardialog.cpp
 
 # 標頭檔
 HEADERS += \
@@ -34,7 +35,8 @@ HEADERS += \
     notificationmanager.h \
     snapshotmanager.h \
     workstats.h \
-    pomodoroconfig.h
+    pomodoroconfig.h \
+    calendardialog.h
 
 # UI 表單檔
 FORMS += \

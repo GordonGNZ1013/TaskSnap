@@ -6,6 +6,9 @@ release/pomodorotimer.o
 release/pomodorosettingsdialog.o
 release/notificationmanager.o
 release/snapshotmanager.o
+release/workstats.o
+release/pomodoroconfig.o
+release/calendardialog.o
 release/qrc_resources.o
 release/moc_mainwindow.o
 release/moc_database.o
@@ -14,3 +17,4 @@ release/moc_pomodorotimer.o
 release/moc_pomodorosettingsdialog.o
 release/moc_notificationmanager.o
 release/moc_snapshotmanager.o
+release/moc_calendardialog.o

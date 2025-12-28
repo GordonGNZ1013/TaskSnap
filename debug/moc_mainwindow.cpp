@@ -69,7 +69,18 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "onTrayIconActivated",
         "QSystemTrayIcon::ActivationReason",
         "reason",
-        "showWindow"
+        "showWindow",
+        "onShowCalendar",
+        "onCalendarTaskSelected",
+        "taskId",
+        "onCalendarAddTask",
+        "date",
+        "onAddSubTask",
+        "onSubTaskToggled",
+        "onDeleteSubTask",
+        "onAddIdea",
+        "onDeleteIdea",
+        "onToggleIdeaImportant"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -129,6 +140,30 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         }}),
         // Slot 'showWindow'
         QtMocHelpers::SlotData<void()>(31, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onShowCalendar'
+        QtMocHelpers::SlotData<void()>(32, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onCalendarTaskSelected'
+        QtMocHelpers::SlotData<void(int)>(33, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 34 },
+        }}),
+        // Slot 'onCalendarAddTask'
+        QtMocHelpers::SlotData<void(const QDate &)>(35, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QDate, 36 },
+        }}),
+        // Slot 'onAddSubTask'
+        QtMocHelpers::SlotData<void()>(37, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onSubTaskToggled'
+        QtMocHelpers::SlotData<void(int)>(38, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 7 },
+        }}),
+        // Slot 'onDeleteSubTask'
+        QtMocHelpers::SlotData<void()>(39, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onAddIdea'
+        QtMocHelpers::SlotData<void()>(40, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onDeleteIdea'
+        QtMocHelpers::SlotData<void()>(41, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onToggleIdeaImportant'
+        QtMocHelpers::SlotData<void()>(42, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -174,6 +209,15 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 19: _t->onModeChanged((*reinterpret_cast< std::add_pointer_t<PomodoroTimer::Mode>>(_a[1]))); break;
         case 20: _t->onTrayIconActivated((*reinterpret_cast< std::add_pointer_t<QSystemTrayIcon::ActivationReason>>(_a[1]))); break;
         case 21: _t->showWindow(); break;
+        case 22: _t->onShowCalendar(); break;
+        case 23: _t->onCalendarTaskSelected((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 24: _t->onCalendarAddTask((*reinterpret_cast< std::add_pointer_t<QDate>>(_a[1]))); break;
+        case 25: _t->onAddSubTask(); break;
+        case 26: _t->onSubTaskToggled((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 27: _t->onDeleteSubTask(); break;
+        case 28: _t->onAddIdea(); break;
+        case 29: _t->onDeleteIdea(); break;
+        case 30: _t->onToggleIdeaImportant(); break;
         default: ;
         }
     }
@@ -198,14 +242,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 22)
+        if (_id < 31)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 22;
+        _id -= 31;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 22)
+        if (_id < 31)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 22;
+        _id -= 31;
     }
     return _id;
 }

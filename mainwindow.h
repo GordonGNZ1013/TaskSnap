@@ -66,6 +66,21 @@ private slots:
     // 系統匣相關
     void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
     void showWindow();
+    
+    // 行事曆相關
+    void onShowCalendar();
+    void onCalendarTaskSelected(int taskId);
+    void onCalendarAddTask(const QDate &date);
+    
+    // 子任務相關
+    void onAddSubTask();
+    void onSubTaskToggled(int row);
+    void onDeleteSubTask();
+    
+    // 靈感相關
+    void onAddIdea();
+    void onDeleteIdea();
+    void onToggleIdeaImportant();
 
 private:
     Ui::MainWindow *ui;
@@ -91,6 +106,10 @@ private:
     void clearTaskDetails();
     void updateStatsDisplay();
     void updateAttachmentList(const Task &task);  // 更新附件列表
+    void updateSubTaskList(const Task &task);     // 更新子任務列表
+    void updateIdeaList(const Task &task);        // 更新靈感列表
+    void selectTaskById(int taskId);              // 根據ID選擇任務
+    void updateTaskListItem(int row, const Task &task);  // 更新單一任務列表項目
 };
 
 #endif // MAINWINDOW_H

@@ -47,6 +47,14 @@ TaskDialog::~TaskDialog()
     delete ui;
 }
 
+void TaskDialog::setDefaultDueDate(const QDate &date)
+{
+    // 設定預設截止日期為指定日期的下午 6 點
+    QDateTime defaultDateTime(date, QTime(18, 0));
+    ui->editDueDateTime->setDateTime(defaultDateTime);
+    ui->chkNoDueDate->setChecked(false);  // 確保啟用截止日期
+}
+
 void TaskDialog::setTask(const Task &task)
 {
     m_taskId = task.id;

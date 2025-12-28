@@ -18,6 +18,9 @@ public:
 
     // 設定任務（編輯模式）
     void setTask(const Task &task);
+    
+    // 設定預設截止日期（從行事曆新增時使用）
+    void setDefaultDueDate(const QDate &date);
 
     // 取得任務資料
     Task getTask() const;

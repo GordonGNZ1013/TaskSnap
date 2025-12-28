@@ -30,6 +30,20 @@ public:
     bool deleteAttachment(int attachmentId);               // 刪除附件
     QList<Attachment> getAttachments(int taskId);          // 取得任務的附件
     
+    // 子任務操作
+    bool addSubTask(SubTask &subTask);                     // 新增子任務
+    bool updateSubTask(const SubTask &subTask);            // 更新子任務
+    bool deleteSubTask(int subTaskId);                     // 刪除子任務
+    bool markSubTaskCompleted(int subTaskId, bool completed);  // 標記子任務完成
+    QList<SubTask> getSubTasks(int taskId);                // 取得任務的子任務
+    
+    // 靈感/待辦操作
+    bool addIdeaNote(IdeaNote &idea);                      // 新增靈感
+    bool updateIdeaNote(const IdeaNote &idea);             // 更新靈感
+    bool deleteIdeaNote(int ideaId);                       // 刪除靈感
+    bool toggleIdeaImportant(int ideaId, bool important);  // 切換重要標記
+    QList<IdeaNote> getIdeaNotes(int taskId);              // 取得任務的靈感列表
+    
     // 取得附件儲存目錄
     static QString attachmentsDir();
     

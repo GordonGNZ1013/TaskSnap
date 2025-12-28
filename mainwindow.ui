@@ -161,6 +161,24 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="btnCalendar">
+         <property name="text">
+          <string>📅 行事曆</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+           QPushButton {
+             background-color: #16a085;
+             margin-top: 10px;
+           }
+           QPushButton:hover {
+             background-color: #1abc9c;
+           }
+          </string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="leftSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -622,6 +640,218 @@
          </property>
         </widget>
        </item>
+       <!-- 子任務區域 -->
+       <item>
+        <widget class="QLabel" name="lblSubTaskTitle">
+         <property name="text">
+          <string>📝 子任務</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-weight: bold; padding-top: 15px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblSubTaskProgress">
+         <property name="text">
+          <string></string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: #7f8c8d; font-size: 12px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListWidget" name="subTaskListWidget">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>150</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+           QListWidget {
+             background-color: white;
+             border: 1px solid #bdc3c7;
+             border-radius: 5px;
+             padding: 5px;
+           }
+           QListWidget::item {
+             padding: 8px;
+             border-bottom: 1px solid #ecf0f1;
+             color: #2c3e50;
+           }
+           QListWidget::item:selected {
+             background-color: #e8f4fc;
+           }
+          </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="subTaskButtons">
+         <layout class="QHBoxLayout" name="subTaskButtonsLayout">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLineEdit" name="editNewSubTask">
+            <property name="placeholderText">
+             <string>輸入子任務...</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QLineEdit {
+                padding: 6px;
+                border: 1px solid #bdc3c7;
+                border-radius: 3px;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnAddSubTask">
+            <property name="text">
+             <string>+</string>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QPushButton {
+                background-color: #27ae60;
+                color: white;
+                border: none;
+                padding: 6px;
+                border-radius: 3px;
+                font-weight: bold;
+              }
+              QPushButton:hover {
+                background-color: #2ecc71;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <!-- 靈感收集區域 -->
+       <item>
+        <widget class="QLabel" name="lblIdeaTitle">
+         <property name="text">
+          <string>💡 靈感收集箱</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-weight: bold; padding-top: 15px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListWidget" name="ideaListWidget">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>120</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+           QListWidget {
+             background-color: #fffef0;
+             border: 1px solid #f1c40f;
+             border-radius: 5px;
+             padding: 5px;
+           }
+           QListWidget::item {
+             padding: 6px;
+             border-bottom: 1px solid #fef9e7;
+             color: #2c3e50;
+           }
+           QListWidget::item:selected {
+             background-color: #fef9e7;
+           }
+          </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="ideaButtons">
+         <layout class="QHBoxLayout" name="ideaButtonsLayout">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLineEdit" name="editNewIdea">
+            <property name="placeholderText">
+             <string>快速記錄靈感...</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QLineEdit {
+                padding: 6px;
+                border: 1px solid #f1c40f;
+                border-radius: 3px;
+                background-color: #fffef0;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnAddIdea">
+            <property name="text">
+             <string>💡</string>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              QPushButton {
+                background-color: #f1c40f;
+                color: white;
+                border: none;
+                padding: 6px;
+                border-radius: 3px;
+              }
+              QPushButton:hover {
+                background-color: #f4d03f;
+              }
+             </string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
        <!-- 附件區域 -->
        <item>
         <widget class="QLabel" name="lblAttachTitle">
@@ -638,13 +868,13 @@
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>120</height>
+           <height>80</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>250</height>
+           <height>150</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -656,7 +886,7 @@
              padding: 8px;
            }
            QListWidget::item {
-             padding: 15px;
+             padding: 10px;
              border-bottom: 1px solid #ecf0f1;
              color: #2c3e50;
              background-color: white;
