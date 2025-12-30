@@ -680,3 +680,382 @@
 [DEBUG] 2025-12-29 05:29:49.517 - 載入任務數量: 5
 [DEBUG] 2025-12-29 05:29:49.520 - ===== 任務完成處理結束 =====
 
+[DEBUG] 2025-12-30 22:47:57.405 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 22:47:57.407 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 22:47:57.407 - 時間: "2025-12-30 22:47:57"
+[INFO ] 2025-12-30 22:47:57.482 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 22:47:57.531 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 22:47:57.532 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 22:47:57.532 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 22:47:57.543 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 22:47:57.543 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 22:47:57.547 - 資料表建立成功
+[DEBUG] 2025-12-30 22:47:57.548 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 22:47:57.548 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 22:47:57.562 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 22:47:57.562 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 22:47:57.563 - 載入任務數量: 5
+[DEBUG] 2025-12-30 22:54:26.462 - 新增任務成功，ID: 6
+[DEBUG] 2025-12-30 22:55:55.579 - 靈感已新增，ID: 3
+[DEBUG] 2025-12-30 22:55:59.784 - 靈感已刪除，ID: 3
+[DEBUG] 2025-12-30 22:56:32.659 - 切換模式: 碼錶
+[DEBUG] 2025-12-30 22:56:33.392 - 切換模式: 番茄鐘
+[DEBUG] 2025-12-30 23:07:45.755 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 23:07:45.756 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 23:07:45.756 - 時間: "2025-12-30 23:07:45"
+[INFO ] 2025-12-30 23:07:45.760 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 23:07:45.809 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 23:07:45.809 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 23:07:45.809 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 23:07:45.819 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:07:45.819 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 23:07:45.822 - 資料表建立成功
+[DEBUG] 2025-12-30 23:07:45.823 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 23:07:45.823 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:07:45.838 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 23:07:45.838 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 23:07:45.838 - 載入任務數量: 6
+[DEBUG] 2025-12-30 23:08:13.945 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 23:08:13.945 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 23:08:13.945 - 時間: "2025-12-30 23:08:13"
+[INFO ] 2025-12-30 23:08:13.949 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 23:08:13.996 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 23:08:13.996 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 23:08:13.997 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 23:08:14.009 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:08:14.009 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 23:08:14.011 - 資料表建立成功
+[DEBUG] 2025-12-30 23:08:14.011 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 23:08:14.011 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:08:14.026 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 23:08:14.026 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 23:08:14.026 - 載入任務數量: 6
+[DEBUG] 2025-12-30 23:08:22.637 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 23:08:22.638 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 23:08:22.638 - 時間: "2025-12-30 23:08:22"
+[INFO ] 2025-12-30 23:08:22.641 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 23:08:22.718 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 23:08:22.718 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 23:08:22.718 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 23:08:22.734 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:08:22.735 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 23:08:22.738 - 資料表建立成功
+[DEBUG] 2025-12-30 23:08:22.738 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 23:08:22.738 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:08:23.129 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 23:08:23.129 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 23:08:23.129 - 載入任務數量: 6
+[DEBUG] 2025-12-30 23:18:22.301 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 23:18:22.303 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 23:18:22.303 - 時間: "2025-12-30 23:18:22"
+[INFO ] 2025-12-30 23:18:22.306 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 23:18:22.358 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 23:18:22.360 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 23:18:22.360 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 23:18:22.371 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:18:22.371 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 23:18:22.373 - 資料表建立成功
+[DEBUG] 2025-12-30 23:18:22.374 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 23:18:22.374 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:18:22.398 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 23:18:22.398 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 23:18:22.398 - 載入任務數量: 6
+[DEBUG] 2025-12-30 23:21:15.203 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 23:21:15.204 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 23:21:15.204 - 時間: "2025-12-30 23:21:15"
+[INFO ] 2025-12-30 23:21:15.208 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 23:21:15.258 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 23:21:15.258 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 23:21:15.260 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 23:21:15.270 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:21:15.270 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 23:21:15.272 - 資料表建立成功
+[DEBUG] 2025-12-30 23:21:15.272 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 23:21:15.272 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:21:15.313 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 23:21:15.314 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 23:21:15.314 - 載入任務數量: 6
+[DEBUG] 2025-12-30 23:21:41.382 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 23:21:41.382 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 23:21:41.383 - 時間: "2025-12-30 23:21:41"
+[INFO ] 2025-12-30 23:21:41.386 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 23:21:41.433 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 23:21:41.433 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 23:21:41.433 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 23:21:41.446 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:21:41.446 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 23:21:41.448 - 資料表建立成功
+[DEBUG] 2025-12-30 23:21:41.448 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 23:21:41.450 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:21:41.463 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 23:21:41.463 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 23:21:41.464 - 載入任務數量: 6
+[DEBUG] 2025-12-30 23:27:16.958 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 23:27:16.958 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 23:27:16.958 - 時間: "2025-12-30 23:27:16"
+[INFO ] 2025-12-30 23:27:16.962 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 23:27:17.010 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 23:27:17.010 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 23:27:17.010 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 23:27:17.021 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:27:17.021 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 23:27:17.024 - 資料表建立成功
+[DEBUG] 2025-12-30 23:27:17.024 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 23:27:17.024 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:27:17.041 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 23:27:17.041 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 23:27:17.042 - 載入任務數量: 6
+[DEBUG] 2025-12-30 23:29:43.277 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 23:29:43.278 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 23:29:43.278 - 時間: "2025-12-30 23:29:43"
+[INFO ] 2025-12-30 23:29:43.281 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 23:29:43.330 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 23:29:43.331 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 23:29:43.331 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 23:29:43.343 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:29:43.343 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 23:29:43.345 - 資料表建立成功
+[DEBUG] 2025-12-30 23:29:43.346 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 23:29:43.346 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:29:43.359 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 23:29:43.359 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 23:29:43.360 - 載入任務數量: 6
+[DEBUG] 2025-12-30 23:31:29.335 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 23:31:29.335 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 23:31:29.336 - 時間: "2025-12-30 23:31:29"
+[INFO ] 2025-12-30 23:31:29.339 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 23:31:29.388 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 23:31:29.388 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 23:31:29.388 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 23:31:29.400 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:31:29.400 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 23:31:29.403 - 資料表建立成功
+[DEBUG] 2025-12-30 23:31:29.403 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 23:31:29.403 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:31:29.417 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 23:31:29.417 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 23:31:29.418 - 載入任務數量: 6
+[DEBUG] 2025-12-30 23:36:27.876 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 23:36:27.876 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 23:36:27.876 - 時間: "2025-12-30 23:36:27"
+[INFO ] 2025-12-30 23:36:27.881 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 23:36:27.932 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 23:36:27.932 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 23:36:27.932 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 23:36:27.942 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:36:27.942 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 23:36:27.945 - 資料表建立成功
+[DEBUG] 2025-12-30 23:36:27.945 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 23:36:27.945 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:36:27.960 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 23:36:27.960 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 23:36:27.961 - 載入任務數量: 6
+[DEBUG] 2025-12-30 23:39:49.003 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 23:39:49.003 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 23:39:49.003 - 時間: "2025-12-30 23:39:49"
+[INFO ] 2025-12-30 23:39:49.006 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 23:39:49.055 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 23:39:49.055 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 23:39:49.055 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 23:39:49.388 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:39:49.388 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 23:39:49.391 - 資料表建立成功
+[DEBUG] 2025-12-30 23:39:49.391 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 23:39:49.391 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:39:49.406 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 23:39:49.406 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 23:39:49.407 - 載入任務數量: 6
+[DEBUG] 2025-12-30 23:43:44.696 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 23:43:44.697 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 23:43:44.697 - 時間: "2025-12-30 23:43:44"
+[INFO ] 2025-12-30 23:43:44.701 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 23:43:44.752 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 23:43:44.752 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 23:43:44.752 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 23:43:45.086 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:43:45.086 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 23:43:45.088 - 資料表建立成功
+[DEBUG] 2025-12-30 23:43:45.088 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 23:43:45.088 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:43:45.103 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 23:43:45.104 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 23:43:45.105 - 載入任務數量: 6
+[DEBUG] 2025-12-30 23:46:29.084 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 23:46:29.086 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 23:46:29.086 - 時間: "2025-12-30 23:46:29"
+[INFO ] 2025-12-30 23:46:29.089 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 23:46:29.139 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 23:46:29.139 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 23:46:29.139 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 23:46:29.479 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:46:29.479 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 23:46:29.482 - 資料表建立成功
+[DEBUG] 2025-12-30 23:46:29.482 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 23:46:29.482 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:46:29.496 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 23:46:29.496 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 23:46:29.497 - 載入任務數量: 6
+[DEBUG] 2025-12-30 23:47:09.767 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 23:47:09.768 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 23:47:09.768 - 時間: "2025-12-30 23:47:09"
+[INFO ] 2025-12-30 23:47:09.773 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 23:47:09.846 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 23:47:09.846 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 23:47:09.846 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 23:47:09.860 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:47:09.860 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 23:47:09.864 - 資料表建立成功
+[DEBUG] 2025-12-30 23:47:09.864 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 23:47:09.864 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:47:09.881 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 23:47:09.881 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 23:47:09.881 - 載入任務數量: 6
+[DEBUG] 2025-12-30 23:59:50.249 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-30 23:59:50.251 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-30 23:59:50.251 - 時間: "2025-12-30 23:59:50"
+[INFO ] 2025-12-30 23:59:50.254 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-30 23:59:50.309 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-30 23:59:50.309 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-30 23:59:50.309 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-30 23:59:50.318 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:59:50.318 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-30 23:59:50.321 - 資料表建立成功
+[DEBUG] 2025-12-30 23:59:50.321 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-30 23:59:50.321 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-30 23:59:50.337 - 提醒檢查已啟動
+[DEBUG] 2025-12-30 23:59:50.337 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-30 23:59:50.338 - 載入任務數量: 6
+[DEBUG] 2025-12-31 00:00:28.767 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-31 00:00:28.768 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-31 00:00:28.768 - 時間: "2025-12-31 00:00:28"
+[INFO ] 2025-12-31 00:00:28.771 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-31 00:00:28.820 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-31 00:00:28.821 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-31 00:00:28.821 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-31 00:00:28.831 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-31 00:00:28.832 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-31 00:00:28.834 - 資料表建立成功
+[DEBUG] 2025-12-31 00:00:28.834 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-31 00:00:28.834 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-31 00:00:28.850 - 提醒檢查已啟動
+[DEBUG] 2025-12-31 00:00:28.850 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-31 00:00:28.851 - 載入任務數量: 6
+[DEBUG] 2025-12-31 00:02:29.455 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-31 00:02:29.456 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-31 00:02:29.456 - 時間: "2025-12-31 00:02:29"
+[INFO ] 2025-12-31 00:02:29.460 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-31 00:02:29.509 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-31 00:02:29.509 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-31 00:02:29.509 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-31 00:02:29.519 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-31 00:02:29.519 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-31 00:02:29.522 - 資料表建立成功
+[DEBUG] 2025-12-31 00:02:29.522 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-31 00:02:29.522 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-31 00:02:29.537 - 提醒檢查已啟動
+[DEBUG] 2025-12-31 00:02:29.537 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-31 00:02:29.538 - 載入任務數量: 6
+[DEBUG] 2025-12-31 00:18:27.606 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-31 00:18:27.607 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-31 00:18:27.607 - 時間: "2025-12-31 00:18:27"
+[INFO ] 2025-12-31 00:18:27.611 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-31 00:18:27.660 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-31 00:18:27.660 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-31 00:18:27.660 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-31 00:18:27.670 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-31 00:18:27.670 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-31 00:18:27.673 - 資料表建立成功
+[DEBUG] 2025-12-31 00:18:27.673 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-31 00:18:27.673 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-31 00:18:27.689 - 提醒檢查已啟動
+[DEBUG] 2025-12-31 00:18:27.689 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-31 00:18:27.690 - 載入任務數量: 6
+[DEBUG] 2025-12-31 00:20:20.753 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-31 00:20:20.753 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-31 00:20:20.753 - 時間: "2025-12-31 00:20:20"
+[INFO ] 2025-12-31 00:20:20.757 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-31 00:20:20.806 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-31 00:20:20.806 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-31 00:20:20.806 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-31 00:20:20.817 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-31 00:20:20.817 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-31 00:20:20.820 - 資料表建立成功
+[DEBUG] 2025-12-31 00:20:20.820 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-31 00:20:20.820 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-31 00:20:20.838 - 提醒檢查已啟動
+[DEBUG] 2025-12-31 00:20:20.838 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-31 00:20:20.838 - 載入任務數量: 6
+[DEBUG] 2025-12-31 00:28:40.013 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-31 00:28:40.013 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-31 00:28:40.014 - 時間: "2025-12-31 00:28:40"
+[INFO ] 2025-12-31 00:28:40.018 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-31 00:28:40.081 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-31 00:28:40.082 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-31 00:28:40.082 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-31 00:28:40.098 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-31 00:28:40.098 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-31 00:28:40.101 - 資料表建立成功
+[DEBUG] 2025-12-31 00:28:40.102 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-31 00:28:40.102 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-31 00:28:40.136 - 提醒檢查已啟動
+[DEBUG] 2025-12-31 00:28:40.137 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-31 00:28:40.138 - 載入任務數量: 6
+[DEBUG] 2025-12-31 00:30:44.154 - 
+========== 應用程序啟動 ==========
+[DEBUG] 2025-12-31 00:30:44.154 - 應用目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug"
+[DEBUG] 2025-12-31 00:30:44.156 - 時間: "2025-12-31 00:30:44"
+[INFO ] 2025-12-31 00:30:44.159 - Using Qt multimedia with FFmpeg version 7.1.1 LGPL version 2.1 or later
+[DEBUG] 2025-12-31 00:30:44.207 - 未找到統計文件，使用默認值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/workstats.json"
+[DEBUG] 2025-12-31 00:30:44.208 - 未找到番茄鐘設置文件，使用預設值 "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/pomodoroconfig.json"
+[DEBUG] 2025-12-31 00:30:44.208 - 番茄鐘設置已重置為預設值
+[DEBUG] 2025-12-31 00:30:44.223 - 數據目錄: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-31 00:30:44.223 - 資料庫路徑: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data/tasks.db"
+[DEBUG] 2025-12-31 00:30:44.227 - 資料表建立成功
+[DEBUG] 2025-12-31 00:30:44.228 - 
+========== 應用程序初始化 ==========
+[DEBUG] 2025-12-31 00:30:44.228 - 數據存儲位置: "C:/Users/jack9/OneDrive - 國立虎尾科技大學 [National Formosa University]/桌面/QT/TaskSnap/debug/data"
+[DEBUG] 2025-12-31 00:30:44.244 - 提醒檢查已啟動
+[DEBUG] 2025-12-31 00:30:44.245 - ✓ 番茄鐘設置已加載到計時器 工作: 25 分 短休: 5 分 長休: 15 分
+[DEBUG] 2025-12-31 00:30:44.245 - 載入任務數量: 6

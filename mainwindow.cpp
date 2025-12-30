@@ -23,7 +23,7 @@
 #include <QUuid>                   // UUID生成
 #include <QStandardPaths>          // 標準路徑
 #include <QInputDialog>            // 輸入對話框
-
+#include <QScrollArea>
 /**
  * 構造函數 - MainWindow()
  * 參數: parent - 父窗口指針
@@ -52,11 +52,34 @@ MainWindow::MainWindow(QWidget *parent)
     globalFont.setPointSize(13);  // 全局字體大小增加到13pt
     this->setFont(globalFont);
 
+    // 定義輸入框的樣式表 (CSS)
+    QString inputStyle = R"(
+        QLineEdit {
+            background-color: white;   /* 1. 修復變黑：設定背景為白色 */
+            color: #333333;            /* 文字顏色 */
+            border: 1px solid #bdc3c7; /* 邊框顏色 */
+            border-radius: 4px;        /* 圓角 */
+            padding: 8px;              /* 內距 */
+            margin-bottom: 25px;       /* 2. 修復黏著：強制在下方保留 25px 空間 */
+            margin-top: 5px;
+        }
+    )";
+
+
+
+    // (選用) 如果還是覺得太擠，可以強制拉開整個右側版面的間距
+    if (ui->editNewSubTask && ui->editNewSubTask->parentWidget()) {
+        QVBoxLayout *rightLayout = qobject_cast<QVBoxLayout*>(ui->editNewSubTask->parentWidget()->layout());
+        if (rightLayout) {
+            rightLayout->setSpacing(15); // 設定元件間距
+        }
+    }
     // 單獨調整關鍵組件的字體 - 左邊面板加大
     if (ui->leftPanel) {
         QFont leftFont = globalFont;
         leftFont.setPointSize(16);  // 左邊面板字體加大到16pt
         ui->leftPanel->setFont(leftFont);
+
     }
 
     // 調整左邊各個按鈕和標籤的字體 - 16pt
