@@ -23,7 +23,7 @@
 #include <QUuid>                   // UUID生成
 #include <QStandardPaths>          // 標準路徑
 #include <QInputDialog>            // 輸入對話框
-#include <QScrollArea>
+
 /**
  * 構造函數 - MainWindow()
  * 參數: parent - 父窗口指針
@@ -47,39 +47,61 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);  // 從UI文件加載界面
 
+    // 設定全局選單樣式，解決深色主題下文字看不清的問題
+    qApp->setStyleSheet(qApp->styleSheet() +
+                        "QMenuBar {"
+                        "    background-color: #34495e;"
+                        "    color: white;"
+                        "    padding: 2px;"
+                        "}"
+                        "QMenuBar::item {"
+                        "    background-color: transparent;"
+                        "    color: white;"
+                        "    padding: 4px 12px;"
+                        "}"
+                        "QMenuBar::item:selected {"
+                        "    background-color: #3498db;"
+                        "}"
+                        "QMenuBar::item:pressed {"
+                        "    background-color: #2980b9;"
+                        "}"
+                        "QMenu {"
+                        "    background-color: white;"
+                        "    color: #2c3e50;"
+                        "    border: 1px solid #bdc3c7;"
+                        "    padding: 5px;"
+                        "}"
+                        "QMenu::item {"
+                        "    background-color: transparent;"
+                        "    color: #2c3e50;"
+                        "    padding: 8px 25px;"
+                        "    border-radius: 3px;"
+                        "    font-size: 13px;"
+                        "}"
+                        "QMenu::item:selected {"
+                        "    background-color: #3498db;"
+                        "    color: white;"
+                        "}"
+                        "QMenu::item:disabled {"
+                        "    color: #95a5a6;"
+                        "}"
+                        "QMenu::separator {"
+                        "    height: 1px;"
+                        "    background-color: #ecf0f1;"
+                        "    margin: 5px 10px;"
+                        "}"
+                        );
+
     // 設定全局字體大小（使所有文字和圖示更大更清晰）
     QFont globalFont = this->font();
     globalFont.setPointSize(13);  // 全局字體大小增加到13pt
     this->setFont(globalFont);
 
-    // 定義輸入框的樣式表 (CSS)
-    QString inputStyle = R"(
-        QLineEdit {
-            background-color: white;   /* 1. 修復變黑：設定背景為白色 */
-            color: #333333;            /* 文字顏色 */
-            border: 1px solid #bdc3c7; /* 邊框顏色 */
-            border-radius: 4px;        /* 圓角 */
-            padding: 8px;              /* 內距 */
-            margin-bottom: 25px;       /* 2. 修復黏著：強制在下方保留 25px 空間 */
-            margin-top: 5px;
-        }
-    )";
-
-
-
-    // (選用) 如果還是覺得太擠，可以強制拉開整個右側版面的間距
-    if (ui->editNewSubTask && ui->editNewSubTask->parentWidget()) {
-        QVBoxLayout *rightLayout = qobject_cast<QVBoxLayout*>(ui->editNewSubTask->parentWidget()->layout());
-        if (rightLayout) {
-            rightLayout->setSpacing(15); // 設定元件間距
-        }
-    }
     // 單獨調整關鍵組件的字體 - 左邊面板加大
     if (ui->leftPanel) {
         QFont leftFont = globalFont;
         leftFont.setPointSize(16);  // 左邊面板字體加大到16pt
         ui->leftPanel->setFont(leftFont);
-
     }
 
     // 調整左邊各個按鈕和標籤的字體 - 16pt
@@ -121,12 +143,12 @@ MainWindow::MainWindow(QWidget *parent)
     if (ui->lblDetailDue) ui->lblDetailDue->setFont(detailFont);
     if (ui->lblDetailPriority) ui->lblDetailPriority->setFont(detailFont);
     if (ui->lblDescTitle) ui->lblDescTitle->setFont(detailFont);
-    
+
     // 調整描述文字框和附件區域標籤 - 16pt
     if (ui->txtDetailDescription) ui->txtDetailDescription->setFont(detailFont);
     if (ui->lblAttachTitle) ui->lblAttachTitle->setFont(detailFont);
     if (ui->btnAddAttachment) ui->btnAddAttachment->setFont(detailFont);
-    
+
     // 調整底部按鈕 - 16pt
     if (ui->btnEditTask) ui->btnEditTask->setFont(detailFont);
     if (ui->btnCompleteTask) ui->btnCompleteTask->setFont(detailFont);
@@ -144,7 +166,7 @@ MainWindow::MainWindow(QWidget *parent)
     if (!m_database->initialize()) {
         QMessageBox::critical(this, "錯誤", "無法初始化資料庫！");
     }
-    
+
     // 顯示數據存儲位置
     QString dataLocation = m_database->dataDir();
     qDebug() << "\n========== 應用程序初始化 ==========";
@@ -192,7 +214,7 @@ void MainWindow::setupConnections()
     m_pomodoroTimer->setWorkStats(m_workStats);
     m_pomodoroTimer->setPomodoroConfig(m_pomodoroConfig);
     m_pomodoroTimer->loadSettingsFromConfig();
-    
+
     // 番茄鐘計時器信號
     connect(m_pomodoroTimer, &PomodoroTimer::tick, this, &MainWindow::onPomodoroTick);
     connect(m_pomodoroTimer, &PomodoroTimer::phaseChanged, this, &MainWindow::onPhaseChanged);
@@ -221,7 +243,7 @@ void MainWindow::setupConnections()
     connect(ui->attachmentListWidget, &QListWidget::itemDoubleClicked, this, [this](QListWidgetItem *item) {
         onOpenAttachment(ui->attachmentListWidget->row(item));
     });
-    
+
     // 附件列表右鍵選單
     ui->attachmentListWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->attachmentListWidget, &QWidget::customContextMenuRequested, this, [this](const QPoint &pos) {
@@ -230,7 +252,7 @@ void MainWindow::setupConnections()
             QMenu menu(this);
             QAction *openAction = menu.addAction("📂 開啟檔案");
             QAction *deleteAction = menu.addAction("🗑️ 刪除附件");
-            
+
             QAction *selected = menu.exec(ui->attachmentListWidget->mapToGlobal(pos));
             if (selected == openAction) {
                 onOpenAttachment(ui->attachmentListWidget->row(item));
@@ -239,17 +261,17 @@ void MainWindow::setupConnections()
             }
         }
     });
-    
+
     // 行事曆按鈕
     connect(ui->btnCalendar, &QPushButton::clicked, this, &MainWindow::onShowCalendar);
-    
+
     // 子任務按鈕和列表
     connect(ui->btnAddSubTask, &QPushButton::clicked, this, &MainWindow::onAddSubTask);
     connect(ui->editNewSubTask, &QLineEdit::returnPressed, this, &MainWindow::onAddSubTask);
     connect(ui->subTaskListWidget, &QListWidget::itemDoubleClicked, this, [this](QListWidgetItem *item) {
         onSubTaskToggled(ui->subTaskListWidget->row(item));
     });
-    
+
     // 子任務列表右鍵選單
     ui->subTaskListWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->subTaskListWidget, &QWidget::customContextMenuRequested, this, [this](const QPoint &pos) {
@@ -258,7 +280,7 @@ void MainWindow::setupConnections()
             QMenu menu(this);
             QAction *toggleAction = menu.addAction("✅ 切換完成狀態");
             QAction *deleteAction = menu.addAction("🗑️ 刪除子任務");
-            
+
             QAction *selected = menu.exec(ui->subTaskListWidget->mapToGlobal(pos));
             if (selected == toggleAction) {
                 onSubTaskToggled(ui->subTaskListWidget->row(item));
@@ -267,11 +289,11 @@ void MainWindow::setupConnections()
             }
         }
     });
-    
+
     // 靈感按鈕和列表
     connect(ui->btnAddIdea, &QPushButton::clicked, this, &MainWindow::onAddIdea);
     connect(ui->editNewIdea, &QLineEdit::returnPressed, this, &MainWindow::onAddIdea);
-    
+
     // 靈感列表右鍵選單
     ui->ideaListWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->ideaListWidget, &QWidget::customContextMenuRequested, this, [this](const QPoint &pos) {
@@ -280,7 +302,7 @@ void MainWindow::setupConnections()
             QMenu menu(this);
             QAction *starAction = menu.addAction("⭐ 切換重要標記");
             QAction *deleteAction = menu.addAction("🗑️ 刪除靈感");
-            
+
             QAction *selected = menu.exec(ui->ideaListWidget->mapToGlobal(pos));
             if (selected == starAction) {
                 onToggleIdeaImportant();
@@ -298,10 +320,10 @@ void MainWindow::setupConnections()
         qApp->quit();
     });
     connect(ui->actionAbout, &QAction::triggered, this, [this]() {
-        QMessageBox::about(this, "關於 專案小幫手", 
-            "專案小幫手 - 任務管理工具\n\n版本 2.0.0\n\n幫助您管理任務、子任務、靈感與專注時間.");
+        QMessageBox::about(this, "關於 專案小幫手",
+                           "專案小幫手 - 任務管理工具\n\n版本 2.0.0\n\n幫助您管理任務、子任務、靈感與專注時間.");
     });
-    
+
     // 測試通知（可在選單中加入）
     connect(ui->actionTestNotification, &QAction::triggered, this, [this]() {
         m_notificationManager->showNotification(
@@ -316,7 +338,7 @@ void MainWindow::loadTasks()
 {
     // 從資料庫載入所有任務
     m_allTasks = m_database->getAllTasks();
-    
+
     // 為每個任務載入子任務（用於顯示進度）
     for (Task &task : m_allTasks) {
         task.subTasks = m_database->getSubTasks(task.id);
@@ -334,41 +356,41 @@ void MainWindow::applyFilter()
     // 根據篩選類型過濾任務
     m_tasks.clear();
     QDate today = QDate::currentDate();
-    
+
     for (const Task &task : m_allTasks) {
         bool include = false;
-        
+
         switch (m_currentFilter) {
-            case FilterAll:
+        case FilterAll:
+            include = true;
+            break;
+        case FilterToday:
+            // 今日任務：截止日期 <= 今天，且未完成（包括逾期）
+            if (task.dueDateTime.isValid() &&
+                task.dueDateTime.date() <= today &&
+                !task.isCompleted) {
                 include = true;
-                break;
-            case FilterToday:
-                // 今日任務：截止日期 <= 今天，且未完成（包括逾期）
-                if (task.dueDateTime.isValid() && 
-                    task.dueDateTime.date() <= today && 
-                    !task.isCompleted) {
-                    include = true;
-                }
-                break;
-            case FilterOverdue:
-                // 逾期任務：已過期且未完成
-                if (task.isOverdue() && !task.isCompleted) {
-                    include = true;
-                }
-                break;
-            case FilterCompleted:
-                // 已完成任務
-                if (task.isCompleted) {
-                    include = true;
-                }
-                break;
+            }
+            break;
+        case FilterOverdue:
+            // 逾期任務：已過期且未完成
+            if (task.isOverdue() && !task.isCompleted) {
+                include = true;
+            }
+            break;
+        case FilterCompleted:
+            // 已完成任務
+            if (task.isCompleted) {
+                include = true;
+            }
+            break;
         }
-        
+
         if (include) {
             m_tasks.append(task);
         }
     }
-    
+
     // 顯示篩選後的任務
     displayTasks();
 }
@@ -377,7 +399,7 @@ void MainWindow::displayTasks()
 {
     // 暫時斷開選擇信號，避免在列表重新建立時觸發過時資料
     disconnect(ui->taskListWidget, &QListWidget::currentRowChanged, this, &MainWindow::onTaskSelected);
-    
+
     // 清空列表
     ui->taskListWidget->clear();
 
@@ -390,7 +412,7 @@ void MainWindow::displayTasks()
     for (const Task &task : m_tasks) {
         // 建立豐富的顯示文字（單行顯示所有信息）
         QString displayText;
-        
+
         // 狀態圖示 + 標題 + 優先級
         if (task.isCompleted) {
             displayText = "✅ ";
@@ -400,18 +422,18 @@ void MainWindow::displayTasks()
             displayText = "📋 ";
         }
         displayText += task.title;
-        
+
         // 加上優先級
         if (task.priority == 2) {
             displayText += "  🔴高";
         } else if (task.priority == 1) {
             displayText += "  🟡中";
         }
-        
+
         // 加上剩下多久 + 截止日期時間
         if (task.dueDateTime.isValid()) {
             QString fullDateTime = task.dueDateTime.toString("yyyy/MM/dd HH:mm");
-            
+
             if (task.isCompleted) {
                 displayText += QString("  ✓ 已完成");
             } else if (task.isOverdue()) {
@@ -426,7 +448,7 @@ void MainWindow::displayTasks()
                 int days = totalSeconds / (24 * 3600);
                 int hours = (totalSeconds % (24 * 3600)) / 3600;
                 int minutes = (totalSeconds % 3600) / 60;
-                
+
                 if (days > 0) {
                     displayText += QString("  ⏱️ 還有 %1天%2小時 (%3)").arg(days).arg(hours).arg(fullDateTime);
                 } else if (hours > 0) {
@@ -439,12 +461,12 @@ void MainWindow::displayTasks()
             // 沒有設定截止時間時的提示
             displayText += "  📅 未設定截止時間";
         }
-        
+
         // 加上子任務進度
         if (!task.subTasks.isEmpty()) {
             displayText += QString("  📝 %1").arg(task.subTaskProgress());
         }
-        
+
         // 加上標籤
         if (!task.tags.isEmpty()) {
             displayText += QString("  🏷️ %1").arg(task.tags);
@@ -452,7 +474,7 @@ void MainWindow::displayTasks()
 
         QListWidgetItem *item = new QListWidgetItem(displayText);
         item->setData(Qt::UserRole, task.id);  // 儲存任務 ID
-        
+
         // 設定項目高度（增加高度使內容更寬敞易讀）
         item->setSizeHint(QSize(0, 75));
 
@@ -473,12 +495,12 @@ void MainWindow::displayTasks()
     // 更新狀態列（顯示篩選結果）
     QString filterName;
     switch (m_currentFilter) {
-        case FilterAll: filterName = "所有任務"; break;
-        case FilterToday: filterName = "今日任務"; break;
-        case FilterOverdue: filterName = "逾期任務"; break;
-        case FilterCompleted: filterName = "已完成"; break;
+    case FilterAll: filterName = "所有任務"; break;
+    case FilterToday: filterName = "今日任務"; break;
+    case FilterOverdue: filterName = "逾期任務"; break;
+    case FilterCompleted: filterName = "已完成"; break;
     }
-    
+
     int totalCount = m_allTasks.size();
     int completedCount = 0;
     int overdueCount = 0;
@@ -486,15 +508,15 @@ void MainWindow::displayTasks()
         if (t.isCompleted) completedCount++;
         else if (t.isOverdue()) overdueCount++;
     }
-    
+
     ui->statusbar->showMessage(QString("【%1】顯示 %2 個 / 總共 %3 個任務")
-        .arg(filterName)
-        .arg(m_tasks.size())
-        .arg(totalCount));
-    
+                                   .arg(filterName)
+                                   .arg(m_tasks.size())
+                                   .arg(totalCount));
+
     // 重新連接信號
     connect(ui->taskListWidget, &QListWidget::currentRowChanged, this, &MainWindow::onTaskSelected);
-    
+
     // 自動選擇第一個任務（如果有的話）
     if (ui->taskListWidget->count() > 0) {
         ui->taskListWidget->setCurrentRow(0);
@@ -510,24 +532,24 @@ void MainWindow::displayTasks()
 void MainWindow::updateTaskListItem(int row, const Task &task)
 {
     if (row < 0 || row >= ui->taskListWidget->count()) return;
-    
+
     QListWidgetItem *item = ui->taskListWidget->item(row);
     if (!item) return;
-    
+
     // 構建顯示文字（與 displayTasks 一致）
     QString displayText = task.title;
-    
+
     // 加上優先級
     if (task.priority == 2) {
         displayText += "  🔴高";
     } else if (task.priority == 1) {
         displayText += "  🟡中";
     }
-    
+
     // 加上剩下多久 + 截止日期時間
     if (task.dueDateTime.isValid()) {
         QString fullDateTime = task.dueDateTime.toString("yyyy/MM/dd HH:mm");
-        
+
         if (task.isCompleted) {
             displayText += QString("  ✓ 已完成");
         } else if (task.isOverdue()) {
@@ -540,7 +562,7 @@ void MainWindow::updateTaskListItem(int row, const Task &task)
             int days = totalSeconds / (24 * 3600);
             int hours = (totalSeconds % (24 * 3600)) / 3600;
             int minutes = (totalSeconds % 3600) / 60;
-            
+
             if (days > 0) {
                 displayText += QString("  ⏱️ 還有 %1天%2小時 (%3)").arg(days).arg(hours).arg(fullDateTime);
             } else if (hours > 0) {
@@ -552,19 +574,19 @@ void MainWindow::updateTaskListItem(int row, const Task &task)
     } else {
         displayText += "  📅 未設定截止時間";
     }
-    
+
     // 加上子任務進度
     if (!task.subTasks.isEmpty()) {
         displayText += QString("  📝 %1").arg(task.subTaskProgress());
     }
-    
+
     // 加上標籤
     if (!task.tags.isEmpty()) {
         displayText += QString("  🏷️ %1").arg(task.tags);
     }
-    
+
     item->setText(displayText);
-    
+
     // 更新顏色
     if (task.isCompleted) {
         item->setForeground(QColor(149, 165, 166));
@@ -658,8 +680,8 @@ void MainWindow::onDeleteTask()
     Task task = m_tasks[currentRow];
 
     QMessageBox::StandardButton reply = QMessageBox::question(this, "確認刪除",
-        QString("確定要刪除任務「%1」嗎？").arg(task.title),
-        QMessageBox::Yes | QMessageBox::No);
+                                                              QString("確定要刪除任務「%1」嗎？").arg(task.title),
+                                                              QMessageBox::Yes | QMessageBox::No);
 
     if (reply == QMessageBox::Yes) {
         if (m_database->deleteTask(task.id)) {
@@ -691,52 +713,52 @@ void MainWindow::onTaskCompleted()
 
     if (m_database->markTaskCompleted(task.id, newStatus)) {
         qDebug() << "✓ 任務狀態已更新";
-        
+
         // 如果是標記為完成，則自動建立快照
         if (newStatus) {
             qDebug() << "\n開始建立快照流程...";
-            
+
             // 重新載入任務以獲取最新的附件信息
             Task completedTask = m_database->getTask(task.id);
             qDebug() << "✓ 已載入任務信息";
             qDebug() << "  - 標題：" << completedTask.title;
             qDebug() << "  - 初始附件數量：" << completedTask.attachments.size();
-            
+
             completedTask.attachments = m_database->getAttachments(task.id);
             qDebug() << "✓ 已載入附件";
             qDebug() << "  - 最終附件數量：" << completedTask.attachments.size();
             for (int i = 0; i < completedTask.attachments.size(); ++i) {
                 qDebug() << "    [" << i+1 << "]" << completedTask.attachments[i].originalName;
             }
-            
+
             // 建立快照
             qDebug() << "\n呼叫 createSnapshot()...";
             QString snapshotPath = m_snapshotManager->createSnapshot(completedTask);
             qDebug() << "快照建立完成，返回路徑:" << snapshotPath;
-            
+
             if (!snapshotPath.isEmpty()) {
                 statusMessage = "✅ 任務已完成！\n快照已保存";
                 qDebug() << "✓✓✓ 快照建立成功！";
-                
+
                 // 顯示完成對話框
-                QMessageBox::information(this, "成功", 
-                    QString("任務已完成！\n\n快照路徑：\n%1").arg(snapshotPath));
+                QMessageBox::information(this, "成功",
+                                         QString("任務已完成！\n\n快照路徑：\n%1").arg(snapshotPath));
             } else {
                 statusMessage = "✅ 任務已完成\n（快照建立失敗）";
                 qWarning() << "✗ 快照建立失敗！";
-                
+
                 // 顯示失敗對話框
-                QMessageBox::warning(this, "提示", 
-                    "任務已完成，但快照建立失敗。\n請檢查：\n1. 磁盤空間\n2. data 文件夾權限\n3. PowerShell 是否可用");
+                QMessageBox::warning(this, "提示",
+                                     "任務已完成，但快照建立失敗。\n請檢查：\n1. 磁盤空間\n2. data 文件夾權限\n3. PowerShell 是否可用");
             }
         } else {
             statusMessage = "✓ 任務標記為未完成";
         }
-        
+
         qDebug() << "重新載入任務列表...";
         // 重新載入任務列表
         loadTasks();
-        
+
         // 在最後設置狀態欄消息，確保不被覆蓋
         ui->statusbar->showMessage(statusMessage, 5000);
         qDebug() << "===== 任務完成處理結束 =====\n";
@@ -753,7 +775,7 @@ void MainWindow::onTaskSelected(int row)
     }
 
     Task task = m_tasks[row];
-    
+
     // 載入子任務和靈感
     task.subTasks = m_database->getSubTasks(task.id);
     task.ideas = m_database->getIdeaNotes(task.id);
@@ -783,13 +805,13 @@ void MainWindow::onTaskSelected(int row)
 
     // 更新完成按鈕文字
     ui->btnCompleteTask->setText(task.isCompleted ? "↩️ 取消完成" : "✅ 完成");
-    
+
     // 更新子任務列表
     updateSubTaskList(task);
-    
+
     // 更新靈感列表
     updateIdeaList(task);
-    
+
     // 更新附件列表
     updateAttachmentList(task);
 }
@@ -832,7 +854,7 @@ void MainWindow::onPomodoroReset()
 {
     m_pomodoroTimer->reset();
     m_pomodoroTimer->stopTaskTimer();
-    
+
     if (m_pomodoroTimer->currentMode() == PomodoroTimer::PomodoroMode) {
         ui->pomodoroTimeLabel->setText("25:00");
         ui->pomodoroPhaseLabel->setText("工作中");
@@ -840,7 +862,7 @@ void MainWindow::onPomodoroReset()
         ui->pomodoroTimeLabel->setText("00:00");
         ui->pomodoroPhaseLabel->setText("碼錶");
     }
-    
+
     ui->lblTaskWorkTime->setText("📋 任務: --");
     ui->statusbar->showMessage("計時已重設", 3000);
 }
@@ -849,7 +871,7 @@ void MainWindow::onPomodoroTick(int seconds)
 {
     // 更新時間顯示
     ui->pomodoroTimeLabel->setText(PomodoroTimer::formatTime(seconds));
-    
+
     // 更新統計
     updateStatsDisplay();
 }
@@ -858,22 +880,22 @@ void MainWindow::onPhaseChanged(PomodoroTimer::Phase phase)
 {
     QString phaseText;
     switch (phase) {
-        case PomodoroTimer::Work:
-            phaseText = "工作中";
-            // 休息結束，開始工作的通知
-            m_notificationManager->playSound(NotificationManager::BreakComplete);
-            showWindow();  // 自動彈出視窗
-            m_notificationManager->showNotification(
-                NotificationManager::BreakComplete,
-                "⏰ 休息結束",
-                "休息時間結束了，開始工作吧！");
-            break;
-        case PomodoroTimer::ShortBreak:
-            phaseText = "短休息";
-            break;
-        case PomodoroTimer::LongBreak:
-            phaseText = "長休息";
-            break;
+    case PomodoroTimer::Work:
+        phaseText = "工作中";
+        // 休息結束，開始工作的通知
+        m_notificationManager->playSound(NotificationManager::BreakComplete);
+        showWindow();  // 自動彈出視窗
+        m_notificationManager->showNotification(
+            NotificationManager::BreakComplete,
+            "⏰ 休息結束",
+            "休息時間結束了，開始工作吧！");
+        break;
+    case PomodoroTimer::ShortBreak:
+        phaseText = "短休息";
+        break;
+    case PomodoroTimer::LongBreak:
+        phaseText = "長休息";
+        break;
     }
     ui->pomodoroPhaseLabel->setText(phaseText);
 }
@@ -882,31 +904,31 @@ void MainWindow::onPomodoroCompleted()
 {
     // 一個番茄鐘完成
     updateStatsDisplay();
-    
+
     // 播放提示音
     m_notificationManager->playSound(NotificationManager::PomodoroComplete);
-    
+
     // 自動彈出視窗
     showWindow();
-    
+
     // 發送系統通知
     m_notificationManager->showNotification(
         NotificationManager::PomodoroComplete,
         "🍅 番茄鐘完成",
         QString("太棒了！完成一個番茄鐘！今日已完成 %1 個")
             .arg(m_workStats->getTodayPomodoroCount()));
-    
+
     // 顯示對話框
-    QMessageBox::information(this, "🍅 番茄鐘完成", 
-        QString("太棒了！完成一個番茄鐘！\n\n📊 工作統計\n"
-                "├─ 今日完成: %1 個番茄\n"
-                "├─ 今日工時: %2\n"
-                "├─ 累計番茄: %3 個\n"
-                "└─ 累計工時: %4")
-        .arg(m_workStats->getTodayPomodoroCount())
-        .arg(PomodoroTimer::formatDuration(m_workStats->getTodayWorkSeconds()))
-        .arg(m_workStats->getTotalPomodoroCount())
-        .arg(PomodoroTimer::formatDuration(m_workStats->getTotalWorkSeconds())));
+    QMessageBox::information(this, "🍅 番茄鐘完成",
+                             QString("太棒了！完成一個番茄鐘！\n\n📊 工作統計\n"
+                                     "├─ 今日完成: %1 個番茄\n"
+                                     "├─ 今日工時: %2\n"
+                                     "├─ 累計番茄: %3 個\n"
+                                     "└─ 累計工時: %4")
+                                 .arg(m_workStats->getTodayPomodoroCount())
+                                 .arg(PomodoroTimer::formatDuration(m_workStats->getTodayWorkSeconds()))
+                                 .arg(m_workStats->getTotalPomodoroCount())
+                                 .arg(PomodoroTimer::formatDuration(m_workStats->getTotalWorkSeconds())));
 }
 
 void MainWindow::onModeChanged(PomodoroTimer::Mode mode)
@@ -926,11 +948,11 @@ void MainWindow::updateStatsDisplay()
 {
     // 更新今日完成的番茄鐘數
     ui->lblTodayPomodoros->setText(QString("🍅 完成: %1 個").arg(m_pomodoroTimer->todayPomodoroCount()));
-    
+
     // 更新今日工作時間
     ui->lblTodayWorkTime->setText(QString("⏱️ 工時: %1").arg(
         PomodoroTimer::formatDuration(m_pomodoroTimer->todayWorkSeconds())));
-    
+
     // 更新當前任務工作時間
     int taskId = m_pomodoroTimer->getCurrentTaskId();
     if (taskId != -1) {
@@ -939,8 +961,8 @@ void MainWindow::updateStatsDisplay()
         for (const Task &task : m_tasks) {
             if (task.id == taskId) {
                 ui->lblTaskWorkTime->setText(QString("📋 %1: %2")
-                    .arg(task.title.left(8))
-                    .arg(PomodoroTimer::formatDuration(taskSeconds)));
+                                                 .arg(task.title.left(8))
+                                                 .arg(PomodoroTimer::formatDuration(taskSeconds)));
                 break;
             }
         }
@@ -950,35 +972,35 @@ void MainWindow::updateStatsDisplay()
 void MainWindow::onPomodoroSettings()
 {
     PomodoroSettingsDialog dialog(this);
-    
+
     // 設定目前的值
     dialog.setWorkDuration(m_pomodoroTimer->getWorkDuration());
     dialog.setShortBreakDuration(m_pomodoroTimer->getShortBreakDuration());
     dialog.setLongBreakDuration(m_pomodoroTimer->getLongBreakDuration());
     dialog.setCyclesBeforeLongBreak(m_pomodoroTimer->getCyclesBeforeLongBreak());
-    
+
     if (dialog.exec() == QDialog::Accepted) {
         // 保存到配置文件
         m_pomodoroConfig->setWorkDuration(dialog.workDuration());
         m_pomodoroConfig->setShortBreakDuration(dialog.shortBreakDuration());
         m_pomodoroConfig->setLongBreakDuration(dialog.longBreakDuration());
         m_pomodoroConfig->setCyclesBeforeLongBreak(dialog.cyclesBeforeLongBreak());
-        
+
         // 套用設定到計時器
         m_pomodoroTimer->setWorkDuration(dialog.workDuration());
         m_pomodoroTimer->setShortBreakDuration(dialog.shortBreakDuration());
         m_pomodoroTimer->setLongBreakDuration(dialog.longBreakDuration());
         m_pomodoroTimer->setCyclesBeforeLongBreak(dialog.cyclesBeforeLongBreak());
-        
+
         // 重設計時器以套用新設定（不發送信號避免彈出通知）
         m_pomodoroTimer->resetQuiet();
-        
+
         qDebug() << "✓ 番茄鐘設定已保存並應用";
-        
+
         ui->statusbar->showMessage(QString("✓ 番茄鐘設定已保存：工作 %1 分鐘，短休息 %2 分鐘，長休息 %3 分鐘")
-            .arg(dialog.workDuration())
-            .arg(dialog.shortBreakDuration())
-            .arg(dialog.longBreakDuration()), 5000);
+                                       .arg(dialog.workDuration())
+                                       .arg(dialog.shortBreakDuration())
+                                       .arg(dialog.longBreakDuration()), 5000);
     }
 }
 
@@ -986,51 +1008,51 @@ void MainWindow::setupTrayIcon()
 {
     // 建立系統匣圖示
     m_trayIcon = new QSystemTrayIcon(this);
-    
+
     // 使用應用程式圖示，或建立一個簡單的圖示
     QPixmap pixmap(32, 32);
     pixmap.fill(Qt::transparent);
     QPainter painter(&pixmap);
     painter.setRenderHint(QPainter::Antialiasing);
-    
+
     // 繪製一個簡單的番茄圖示
     painter.setBrush(QColor("#e74c3c"));
     painter.setPen(Qt::NoPen);
     painter.drawEllipse(2, 6, 28, 24);
-    
+
     // 繪製番茄蒂
     painter.setBrush(QColor("#27ae60"));
     painter.drawRect(13, 2, 6, 6);
-    
+
     painter.end();
-    
+
     m_trayIcon->setIcon(QIcon(pixmap));
     m_trayIcon->setToolTip("專案小幫手 - 任務管理工具");
 
     // 建立右鍵選單
     m_trayMenu = new QMenu(this);
-    
+
     QAction *showAction = m_trayMenu->addAction("📋 顯示主視窗");
     connect(showAction, &QAction::triggered, this, &MainWindow::showWindow);
-    
+
     m_trayMenu->addSeparator();
-    
+
     QAction *newTaskAction = m_trayMenu->addAction("➕ 新增任務");
     connect(newTaskAction, &QAction::triggered, this, &MainWindow::onAddTask);
-    
+
     m_trayMenu->addSeparator();
-    
+
     QAction *startPomodoroAction = m_trayMenu->addAction("🍅 開始番茄鐘");
     connect(startPomodoroAction, &QAction::triggered, this, &MainWindow::onPomodoroStart);
-    
+
     QAction *pausePomodoroAction = m_trayMenu->addAction("⏸️ 暫停");
     connect(pausePomodoroAction, &QAction::triggered, this, &MainWindow::onPomodoroPause);
-    
+
     m_trayMenu->addSeparator();
-    
+
     QAction *exitAction = m_trayMenu->addAction("🚪 結束");
     connect(exitAction, &QAction::triggered, qApp, &QApplication::quit);
-    
+
     m_trayIcon->setContextMenu(m_trayMenu);
 
     // 連接點擊事件
@@ -1043,12 +1065,12 @@ void MainWindow::setupTrayIcon()
 void MainWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
     switch (reason) {
-        case QSystemTrayIcon::Trigger:  // 單擊
-        case QSystemTrayIcon::DoubleClick:  // 雙擊
-            showWindow();
-            break;
-        default:
-            break;
+    case QSystemTrayIcon::Trigger:  // 單擊
+    case QSystemTrayIcon::DoubleClick:  // 雙擊
+        showWindow();
+        break;
+    default:
+        break;
     }
 }
 
@@ -1066,7 +1088,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     if (m_trayIcon) {
         m_trayIcon->hide();
     }
-    
+
     // 接受關閉事件，真正關閉程式
     event->accept();
 }
@@ -1076,13 +1098,13 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::updateAttachmentList(const Task &task)
 {
     ui->attachmentListWidget->clear();
-    
+
     // 設定附件列表的字體大小
     QFont attachFont = ui->attachmentListWidget->font();
     attachFont.setPointSize(16);  // 更大的字體
     attachFont.setBold(true);
     ui->attachmentListWidget->setFont(attachFont);
-    
+
     for (const Attachment &att : task.attachments) {
         // 只顯示檔案名稱，圖示在前面，使用空格分隔
         QString fileName = att.originalName;
@@ -1091,18 +1113,18 @@ void MainWindow::updateAttachmentList(const Task &task)
             fileName = fileName.left(27) + "...";
         }
         QString displayText = att.icon() + "  " + fileName;
-        
+
         QListWidgetItem *item = new QListWidgetItem(displayText);
         item->setData(Qt::UserRole, att.id);
         item->setData(Qt::UserRole + 1, att.storedPath);
         item->setToolTip(QString("完整名稱: %1\n路徑: %2\n新增時間: %3")
-            .arg(att.originalName)
-            .arg(att.storedPath)
-            .arg(att.addedAt.toString("yyyy/MM/dd HH:mm")));
+                             .arg(att.originalName)
+                             .arg(att.storedPath)
+                             .arg(att.addedAt.toString("yyyy/MM/dd HH:mm")));
         item->setSizeHint(QSize(300, 50));  // 增加寬度和高度
         ui->attachmentListWidget->addItem(item);
     }
-    
+
     // 更新標題顯示附件數量
     if (task.attachments.isEmpty()) {
         ui->lblAttachTitle->setText("📎 附件");
@@ -1118,28 +1140,28 @@ void MainWindow::onAddAttachment()
         QMessageBox::information(this, "提示", "請先選擇一個任務！");
         return;
     }
-    
+
     Task &task = m_tasks[currentRow];
-    
+
     // 開啟檔案選擇對話框
-    QStringList files = QFileDialog::getOpenFileNames(this, "選擇附件檔案", 
-        QStandardPaths::writableLocation(QStandardPaths::HomeLocation),
-        "所有檔案 (*);;圖片 (*.png *.jpg *.jpeg *.gif *.bmp);;文件 (*.pdf *.doc *.docx *.txt)");
-    
+    QStringList files = QFileDialog::getOpenFileNames(this, "選擇附件檔案",
+                                                      QStandardPaths::writableLocation(QStandardPaths::HomeLocation),
+                                                      "所有檔案 (*);;圖片 (*.png *.jpg *.jpeg *.gif *.bmp);;文件 (*.pdf *.doc *.docx *.txt)");
+
     if (files.isEmpty()) {
         return;
     }
-    
+
     QMimeDatabase mimeDb;
     QString attachDir = Database::attachmentsDir();
-    
+
     for (const QString &filePath : files) {
         QFileInfo fileInfo(filePath);
-        
+
         // 生成唯一的儲存檔名
         QString storedName = QUuid::createUuid().toString(QUuid::WithoutBraces) + "_" + fileInfo.fileName();
         QString storedPath = attachDir + "/" + storedName;
-        
+
         // 複製檔案到附件目錄
         if (QFile::copy(filePath, storedPath)) {
             Attachment att;
@@ -1147,7 +1169,7 @@ void MainWindow::onAddAttachment()
             att.originalName = fileInfo.fileName();
             att.storedPath = storedPath;
             att.mimeType = mimeDb.mimeTypeForFile(filePath).name();
-            
+
             if (m_database->addAttachment(att)) {
                 task.attachments.append(att);
                 ui->statusbar->showMessage(QString("已新增附件: %1").arg(att.originalName), 3000);
@@ -1156,10 +1178,10 @@ void MainWindow::onAddAttachment()
             QMessageBox::warning(this, "錯誤", QString("無法複製檔案: %1").arg(fileInfo.fileName()));
         }
     }
-    
+
     // 更新附件列表顯示
     updateAttachmentList(task);
-    
+
     // 同步更新 m_allTasks
     for (Task &t : m_allTasks) {
         if (t.id == task.id) {
@@ -1175,21 +1197,21 @@ void MainWindow::onDeleteAttachment()
     if (currentRow < 0 || currentRow >= m_tasks.size()) {
         return;
     }
-    
+
     int attRow = ui->attachmentListWidget->currentRow();
     if (attRow < 0) {
         QMessageBox::information(this, "提示", "請先選擇一個附件！");
         return;
     }
-    
+
     QListWidgetItem *item = ui->attachmentListWidget->currentItem();
     int attachmentId = item->data(Qt::UserRole).toInt();
     QString fileName = item->text();
-    
+
     QMessageBox::StandardButton reply = QMessageBox::question(this, "確認刪除",
-        QString("確定要刪除附件「%1」嗎？").arg(fileName),
-        QMessageBox::Yes | QMessageBox::No);
-    
+                                                              QString("確定要刪除附件「%1」嗎？").arg(fileName),
+                                                              QMessageBox::Yes | QMessageBox::No);
+
     if (reply == QMessageBox::Yes) {
         if (m_database->deleteAttachment(attachmentId)) {
             // 從任務中移除附件
@@ -1200,7 +1222,7 @@ void MainWindow::onDeleteAttachment()
                     break;
                 }
             }
-            
+
             // 同步更新 m_allTasks
             for (Task &t : m_allTasks) {
                 if (t.id == task.id) {
@@ -1208,7 +1230,7 @@ void MainWindow::onDeleteAttachment()
                     break;
                 }
             }
-            
+
             updateAttachmentList(task);
             ui->statusbar->showMessage("附件已刪除", 3000);
         } else {
@@ -1220,12 +1242,12 @@ void MainWindow::onDeleteAttachment()
 void MainWindow::onOpenAttachment(int row)
 {
     if (row < 0) return;
-    
+
     QListWidgetItem *item = ui->attachmentListWidget->item(row);
     if (!item) return;
-    
+
     QString filePath = item->data(Qt::UserRole + 1).toString();
-    
+
     if (QFile::exists(filePath)) {
         QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
     } else {
@@ -1241,10 +1263,10 @@ void MainWindow::onShowCalendar()
 {
     CalendarDialog *dialog = new CalendarDialog(this);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
-    
+
     // m_allTasks 已經在 loadTasks 時預先載入了子任務
     dialog->setTasks(m_allTasks);
-    
+
     // 連接信號
     connect(dialog, &CalendarDialog::taskSelected, this, &MainWindow::onCalendarTaskSelected);
     connect(dialog, &CalendarDialog::addTaskRequested, this, [this, dialog](const QDate &date) {
@@ -1252,7 +1274,7 @@ void MainWindow::onShowCalendar()
         // 刷新行事曆中的任務列表
         dialog->refreshTasks(m_allTasks);
     });
-    
+
     dialog->exec();
 }
 
@@ -1264,22 +1286,22 @@ void MainWindow::onCalendarTaskSelected(int taskId)
 void MainWindow::onCalendarAddTask(const QDate &date)
 {
     TaskDialog taskDialog(this);
-    
+
     // 設定預設截止日期為行事曆選中的日期
     taskDialog.setDefaultDueDate(date);
-    
+
     if (taskDialog.exec() == QDialog::Accepted) {
         Task task = taskDialog.getTask();
-        
+
         if (m_database->addTask(task)) {
             // 載入子任務（雖然新任務沒有子任務，但為了一致性）
             task.subTasks = m_database->getSubTasks(task.id);
             task.ideas = m_database->getIdeaNotes(task.id);
-            
+
             // 添加到任務列表
             m_allTasks.append(task);
             applyFilter();
-            
+
             ui->statusbar->showMessage("✅ 任務已從行事曆新增！", 3000);
         } else {
             QMessageBox::warning(this, "錯誤", "無法新增任務！");
@@ -1293,7 +1315,7 @@ void MainWindow::selectTaskById(int taskId)
     m_currentFilter = FilterAll;
     ui->btnAllTasks->setChecked(true);
     applyFilter();
-    
+
     // 找到並選擇對應的任務
     for (int i = 0; i < m_tasks.size(); ++i) {
         if (m_tasks[i].id == taskId) {
@@ -1310,10 +1332,10 @@ void MainWindow::selectTaskById(int taskId)
 void MainWindow::updateSubTaskList(const Task &task)
 {
     ui->subTaskListWidget->clear();
-    
+
     int completed = 0;
     int total = task.subTasks.size();
-    
+
     for (const SubTask &st : task.subTasks) {
         QString displayText;
         if (st.isCompleted) {
@@ -1322,17 +1344,17 @@ void MainWindow::updateSubTaskList(const Task &task)
         } else {
             displayText = "⬜ " + st.title;
         }
-        
+
         QListWidgetItem *item = new QListWidgetItem(displayText);
         item->setData(Qt::UserRole, st.id);
-        
+
         if (st.isCompleted) {
             item->setForeground(QColor("#95a5a6"));
         }
-        
+
         ui->subTaskListWidget->addItem(item);
     }
-    
+
     // 更新進度標籤
     if (total > 0) {
         int percentage = (completed * 100) / total;
@@ -1349,22 +1371,22 @@ void MainWindow::onAddSubTask()
         QMessageBox::information(this, "提示", "請先選擇一個任務！");
         return;
     }
-    
+
     QString title = ui->editNewSubTask->text().trimmed();
     if (title.isEmpty()) {
         return;
     }
-    
+
     Task &task = m_tasks[currentRow];
-    
+
     SubTask subTask;
     subTask.taskId = task.id;
     subTask.title = title;
     subTask.sortOrder = task.subTasks.size();
-    
+
     if (m_database->addSubTask(subTask)) {
         task.subTasks.append(subTask);
-        
+
         // 同步更新 m_allTasks
         for (Task &t : m_allTasks) {
             if (t.id == task.id) {
@@ -1372,7 +1394,7 @@ void MainWindow::onAddSubTask()
                 break;
             }
         }
-        
+
         updateSubTaskList(task);
         updateTaskListItem(currentRow, task);  // 更新任務列表項目顯示
         ui->editNewSubTask->clear();
@@ -1384,19 +1406,19 @@ void MainWindow::onSubTaskToggled(int row)
 {
     int currentRow = ui->taskListWidget->currentRow();
     if (currentRow < 0 || currentRow >= m_tasks.size()) return;
-    
+
     Task &task = m_tasks[currentRow];
     if (row < 0 || row >= task.subTasks.size()) return;
-    
+
     SubTask &subTask = task.subTasks[row];
     bool newStatus = !subTask.isCompleted;
-    
+
     if (m_database->markSubTaskCompleted(subTask.id, newStatus)) {
         subTask.isCompleted = newStatus;
         if (newStatus) {
             subTask.completedAt = QDateTime::currentDateTime();
         }
-        
+
         // 同步更新 m_allTasks
         for (Task &t : m_allTasks) {
             if (t.id == task.id) {
@@ -1404,10 +1426,10 @@ void MainWindow::onSubTaskToggled(int row)
                 break;
             }
         }
-        
+
         updateSubTaskList(task);
         updateTaskListItem(currentRow, task);  // 更新任務列表項目顯示
-        
+
         // 檢查是否所有子任務都完成了
         bool allCompleted = true;
         for (const SubTask &st : task.subTasks) {
@@ -1416,12 +1438,12 @@ void MainWindow::onSubTaskToggled(int row)
                 break;
             }
         }
-        
+
         if (allCompleted && !task.subTasks.isEmpty() && !task.isCompleted) {
             QMessageBox::StandardButton reply = QMessageBox::question(this, "子任務全部完成",
-                "所有子任務都已完成！\n是否要將主任務標記為完成？",
-                QMessageBox::Yes | QMessageBox::No);
-            
+                                                                      "所有子任務都已完成！\n是否要將主任務標記為完成？",
+                                                                      QMessageBox::Yes | QMessageBox::No);
+
             if (reply == QMessageBox::Yes) {
                 onTaskCompleted();
             }
@@ -1433,28 +1455,28 @@ void MainWindow::onDeleteSubTask()
 {
     int currentRow = ui->taskListWidget->currentRow();
     if (currentRow < 0 || currentRow >= m_tasks.size()) return;
-    
+
     int subTaskRow = ui->subTaskListWidget->currentRow();
     if (subTaskRow < 0) {
         QMessageBox::information(this, "提示", "請先選擇要刪除的子任務！");
         return;
     }
-    
+
     Task &task = m_tasks[currentRow];
     if (subTaskRow >= task.subTasks.size()) return;
-    
+
     SubTask &subTask = task.subTasks[subTaskRow];
-    
+
     // 確認刪除
     QMessageBox::StandardButton reply = QMessageBox::question(this, "確認刪除",
-        QString("確定要刪除這個子任務嗎？\n\n「%1」").arg(subTask.title),
-        QMessageBox::Yes | QMessageBox::No);
-    
+                                                              QString("確定要刪除這個子任務嗎？\n\n「%1」").arg(subTask.title),
+                                                              QMessageBox::Yes | QMessageBox::No);
+
     if (reply != QMessageBox::Yes) return;
-    
+
     if (m_database->deleteSubTask(subTask.id)) {
         task.subTasks.removeAt(subTaskRow);
-        
+
         // 同步更新 m_allTasks
         for (Task &t : m_allTasks) {
             if (t.id == task.id) {
@@ -1462,7 +1484,7 @@ void MainWindow::onDeleteSubTask()
                 break;
             }
         }
-        
+
         updateSubTaskList(task);
         updateTaskListItem(currentRow, task);  // 更新任務列表項目顯示
         ui->statusbar->showMessage("子任務已刪除", 2000);
@@ -1476,7 +1498,7 @@ void MainWindow::onDeleteSubTask()
 void MainWindow::updateIdeaList(const Task &task)
 {
     ui->ideaListWidget->clear();
-    
+
     for (const IdeaNote &idea : task.ideas) {
         QString displayText;
         if (idea.isImportant) {
@@ -1484,18 +1506,18 @@ void MainWindow::updateIdeaList(const Task &task)
         } else {
             displayText = "💡 " + idea.content;
         }
-        
+
         // 加上時間
         displayText += QString(" (%1)").arg(idea.createdAt.toString("MM/dd HH:mm"));
-        
+
         QListWidgetItem *item = new QListWidgetItem(displayText);
         item->setData(Qt::UserRole, idea.id);
         item->setData(Qt::UserRole + 1, idea.isImportant);
-        
+
         if (idea.isImportant) {
             item->setForeground(QColor("#f39c12"));
         }
-        
+
         ui->ideaListWidget->addItem(item);
     }
 }
@@ -1507,21 +1529,21 @@ void MainWindow::onAddIdea()
         QMessageBox::information(this, "提示", "請先選擇一個任務！");
         return;
     }
-    
+
     QString content = ui->editNewIdea->text().trimmed();
     if (content.isEmpty()) {
         return;
     }
-    
+
     Task &task = m_tasks[currentRow];
-    
+
     IdeaNote idea;
     idea.taskId = task.id;
     idea.content = content;
-    
+
     if (m_database->addIdeaNote(idea)) {
         task.ideas.prepend(idea);  // 新靈感放在最前面
-        
+
         // 同步更新 m_allTasks
         for (Task &t : m_allTasks) {
             if (t.id == task.id) {
@@ -1529,7 +1551,7 @@ void MainWindow::onAddIdea()
                 break;
             }
         }
-        
+
         updateIdeaList(task);
         ui->editNewIdea->clear();
         ui->statusbar->showMessage("💡 靈感已記錄！", 2000);
@@ -1540,28 +1562,28 @@ void MainWindow::onDeleteIdea()
 {
     int currentRow = ui->taskListWidget->currentRow();
     if (currentRow < 0 || currentRow >= m_tasks.size()) return;
-    
+
     int ideaRow = ui->ideaListWidget->currentRow();
     if (ideaRow < 0) {
         QMessageBox::information(this, "提示", "請先選擇要刪除的靈感！");
         return;
     }
-    
+
     Task &task = m_tasks[currentRow];
     if (ideaRow >= task.ideas.size()) return;
-    
+
     IdeaNote &idea = task.ideas[ideaRow];
-    
+
     // 確認刪除
     QMessageBox::StandardButton reply = QMessageBox::question(this, "確認刪除",
-        QString("確定要刪除這條靈感嗎？\n\n「%1」").arg(idea.content),
-        QMessageBox::Yes | QMessageBox::No);
-    
+                                                              QString("確定要刪除這條靈感嗎？\n\n「%1」").arg(idea.content),
+                                                              QMessageBox::Yes | QMessageBox::No);
+
     if (reply != QMessageBox::Yes) return;
-    
+
     if (m_database->deleteIdeaNote(idea.id)) {
         task.ideas.removeAt(ideaRow);
-        
+
         // 同步更新 m_allTasks
         for (Task &t : m_allTasks) {
             if (t.id == task.id) {
@@ -1569,7 +1591,7 @@ void MainWindow::onDeleteIdea()
                 break;
             }
         }
-        
+
         updateIdeaList(task);
         ui->statusbar->showMessage("靈感已刪除", 2000);
     }
@@ -1579,19 +1601,19 @@ void MainWindow::onToggleIdeaImportant()
 {
     int currentRow = ui->taskListWidget->currentRow();
     if (currentRow < 0 || currentRow >= m_tasks.size()) return;
-    
+
     int ideaRow = ui->ideaListWidget->currentRow();
     if (ideaRow < 0) return;
-    
+
     Task &task = m_tasks[currentRow];
     if (ideaRow >= task.ideas.size()) return;
-    
+
     IdeaNote &idea = task.ideas[ideaRow];
     bool newImportant = !idea.isImportant;
-    
+
     if (m_database->toggleIdeaImportant(idea.id, newImportant)) {
         idea.isImportant = newImportant;
-        
+
         // 同步更新 m_allTasks
         for (Task &t : m_allTasks) {
             if (t.id == task.id) {
@@ -1599,7 +1621,7 @@ void MainWindow::onToggleIdeaImportant()
                 break;
             }
         }
-        
+
         updateIdeaList(task);
         ui->statusbar->showMessage(newImportant ? "⭐ 已標記為重要" : "已取消重要標記", 2000);
     }
